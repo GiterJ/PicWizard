@@ -1,13 +1,36 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
+import PictureQAView from '@/views/PictureQAView.vue'
+import PictureGenerateView from '@/views/PictureGenerateView.vue'
+import VideoGenerateView from '@/views/VideoGenerateView.vue'
+import PictureEditView from '@/views/PictureEditView.vue'
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(),
   routes: [
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      redirect: 'pqa'
+    },
+    {
+      path:'/pqa',
+      name: 'pqa',
+      component:PictureQAView
+    },
+    {
+      path: '/pgen',
+      name: 'pgen',
+      component: PictureGenerateView
+    },
+    {
+      path: "/pedit",
+      name: 'pedit',
+      component: PictureEditView
+    },
+    {
+      path: '/vgen',
+      name: 'vgen',
+      component: VideoGenerateView
     }
   ]
 })

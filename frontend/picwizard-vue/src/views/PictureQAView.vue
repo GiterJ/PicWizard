@@ -1,18 +1,19 @@
 <template>
+    <h1>PictureQAView</h1>
     <div class="box">
         
     </div>
 </template>
 
 <script setup>
-  
+
 </script>
 
 <style scoped lang="less">
 .box {
-    width: 20px;
-    height: 20px;
-    background-color: #333;
+    width: 100vw;
+    height: 100vh;
+    background-color: #fff;
 }
 
 </style>
