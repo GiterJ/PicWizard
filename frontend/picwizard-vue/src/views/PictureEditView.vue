@@ -2,7 +2,7 @@
   <Header title="图片编辑"></Header>
   <!-- 内容框 -->
   <div class="container">
-
+    
   </div>
 </template>
 

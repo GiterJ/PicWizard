@@ -30,7 +30,7 @@
 <script setup>
 import Header from '@/components/Header.vue';
 import ChatBox from '@/components/ChatBox.vue';
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
 
 // 聊天记录
 // TODO 添加聊天记录
@@ -59,7 +59,15 @@ const chatHistory = reactive([
 
 // TODO 补充上传处理函数 base64编码
 const afterRead = () => {
-    
+
+}
+
+// 输入框消息文字
+const sms = ref("")
+
+// TODO 补充发送处理函数
+const sendMessage = () => {
+
 }
 </script>
 
