@@ -1,9 +1,9 @@
 <template>
-  <h1>PictureGenerateView</h1>
+  <Header title="图片生成"></Header>
 </template>
 
 <script setup>
-  
+import Header from '@/components/Header.vue';
 </script>
 
 <style scoped lang="less">

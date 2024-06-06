@@ -8,11 +8,11 @@
 </template>
 
 <script setup>
-    import { useCounterStore } from '@/stores/counter';
-    const countStore = useCounterStore();
+import { useCounterStore } from '@/stores/counter';
+const countStore = useCounterStore();
     
 </script>
 
 <style scoped lang="less">
-  
+
 </style>
