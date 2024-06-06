@@ -57,7 +57,7 @@ const chatHistory = reactive([
     },
 ])
 
-// TODO 补充上传处理函数
+// TODO 补充上传处理函数 base64编码
 const afterRead = () => {
     
 }
