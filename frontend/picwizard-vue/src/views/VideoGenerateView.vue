@@ -1,12 +1,8 @@
 <template>
   <!-- 头部 -->
   <Header title="视频生成"></Header>
+
   <div class="videogen-container">
-    <!-- 视频播放 -->
-    <div class="video">
-      <!-- 播放生成的视频 -->
-      <video id="video" autoplay="true" :src="videoUrl" style="width: 100%; height: 100%; object-fit: cover"></video>
-    </div>
 
     <!-- 文件上传框 -->
     <div class="fileuploader">
@@ -23,6 +19,11 @@
       <div class="pic">上传图片</div>
       <div class="aud">上传音频&nbsp;&nbsp;</div>
     </div>
+    <!-- 视频播放 -->
+    <div class="video">
+      <!-- 播放生成的视频 -->
+      <video id="video" autoplay="true" :src="videoUrl" style="width: 100%; height: 100%; object-fit: cover"></video>
+    </div>
 
   </div>
 </template>
@@ -35,8 +36,7 @@ import 'vant/es/toast/style'
 
 const router = useRouter()
 
-// 文字展示窗口
-const chatboxs = ref()
+const videoUrl = ref('http://vjs.zencdn.net/v/oceans.mp4')
 
 </script>
 
@@ -80,9 +80,11 @@ const chatboxs = ref()
     display: flex;
     justify-content: center;
     margin-top: 1vh;
+
     .pic {
       margin: 0 auto;
     }
+
     .aud {
       margin: 0 auto;
     }
