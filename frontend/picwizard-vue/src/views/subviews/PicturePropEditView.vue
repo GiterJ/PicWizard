@@ -5,6 +5,7 @@
     <div class="text1">
       <p>&nbsp;&nbsp;请上传图片</p>
     </div>
+    
     <!-- 文件上传框 -->
     <div class="uploader">
       <FileUploader type="img"></FileUploader>
