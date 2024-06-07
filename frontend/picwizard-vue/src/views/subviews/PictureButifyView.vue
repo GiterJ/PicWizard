@@ -25,7 +25,7 @@
     </div>
 
     <div class="button">
-      <van-button type="primary" plain icon="arrow-up" block @click="onSend">开始修复！</van-button>
+      <van-button type="primary" plain round icon="arrow-up" block @click="onSend">开始修复</van-button>
     </div>
   </div>
 </template>

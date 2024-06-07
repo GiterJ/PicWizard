@@ -74,7 +74,7 @@ const props = defineProps(['type', 'avatar', 'text', 'name'])
             text-align: left;
             max-width: 60vw;
             min-width: 10vw;
-            background-color: #7794FF;
+            background-color: #1989FA;
             min-height: 7vw;
             border-radius: 5px;
             top: 3.4vw;

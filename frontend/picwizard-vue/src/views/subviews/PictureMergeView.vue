@@ -19,7 +19,7 @@
     </div>
 
     <div class="button">
-      <van-button type="primary" plain icon="arrow-up" block @click="onSend">开始融合！</van-button>
+      <van-button type="primary" plain round icon="arrow-up" block @click="onSend">开始融合</van-button>
     </div>
 
   </div>

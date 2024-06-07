@@ -5,7 +5,7 @@
     <div class="text1">
       <p>&nbsp;&nbsp;请上传图片</p>
     </div>
-    
+
     <!-- 文件上传框 -->
     <div class="uploader">
       <FileUploader type="img"></FileUploader>
@@ -20,13 +20,14 @@
     <div class="text2">
       &nbsp;&nbsp;结果
     </div>
+
     <!-- 展示框 -->
     <div class="show">
       <img src="" alt="">
     </div>
 
     <div class="button">
-      <van-button type="primary" plain icon="arrow-up" block @click="onSend">开始修复！</van-button>
+      <van-button type="primary" plain round icon="arrow-up" block @click="onSend">开始修复</van-button>
     </div>
   </div>
 </template>

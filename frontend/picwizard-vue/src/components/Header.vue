@@ -8,5 +8,5 @@ const props = defineProps(['title'])
 </script>
 
 <style scoped lang="less">
-
+  
 </style>
