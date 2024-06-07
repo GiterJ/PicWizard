@@ -1,13 +1,13 @@
 <template>
-  <BackHeader title="照片修复"></BackHeader>
+  <BackHeader title="人脸动漫化"></BackHeader>
   <div class="fix-container">
     <!-- 文字说明 -->
     <div class="text1">
-      <p>&nbsp;&nbsp;请上传图片</p>
+      <van-icon name="circle" color="rgba(84, 115, 232, 0.3)" />&nbsp;图片上传
     </div>
     <!-- 文件上传框 -->
     <div class="uploader">
-      <FileUploader type="img"></FileUploader>
+      <FileUploader type="img" :after-read-func="afterReadFunc"></FileUploader>
       <div class="img-demo">
         <div class="over-text">
           示&nbsp;例&nbsp;图&nbsp;片
@@ -17,7 +17,7 @@
 
     <!-- 文字说明2 -->
     <div class="text2">
-      &nbsp;&nbsp;修复结果
+      <van-icon name="circle" color="rgba(84, 115, 232, 0.3)" />&nbsp;动漫化图片
     </div>
     <!-- 展示框 -->
     <div class="show">
@@ -25,7 +25,7 @@
     </div>
 
     <div class="button">
-      <van-button type="primary" plain round icon="arrow-up" block @click="onSend">开始修复</van-button>
+      <van-button type="primary" plain round icon="arrow-up" block @click="onSend">开始处理</van-button>
     </div>
   </div>
 </template>
@@ -33,17 +33,45 @@
 <script setup>
 import BackHeader from '@/components/BackHeader.vue';
 import FileUploader from '@/components/FileUploader.vue';
+import { useNetworkStore } from '@/stores/network';
+import { showToast } from 'vant';
+import { reactive, ref } from 'vue';
 
-const onSend = () => {
+// 用户上传的图片
+const userPicture = ref("")
+// 生成的图片
+const genPicture = ref("")
 
+const onSend = async () => {
+  // 用户必须先上传图片
+  if (userPicture.value == "") {
+    showToast("请上传图片")
+    return;
+  }
+
+  const networkStore = useNetworkStore()
+  const res = await networkStore.pfix(userPicture.value)
+  if (res.code != -1) {
+    genPicture.value = res.msg
+  } else {
+    // 已做错误处理
+  }
 }
+
+const afterReadFunc = (file) => {
+  userPicture.value = file.content
+}
+
 </script>
 
 <style scoped lang="less">
 .fix-container {
   width: 100vw;
 
-  .text1 {}
+  .text1 {
+    margin-top: 4vh;
+    padding: 0 9vw;
+  }
 
   .uploader {
     margin-top: 8px;
@@ -77,11 +105,10 @@ const onSend = () => {
 
   }
 
-  .text2 {}
-
-  .button {
-    margin: 2vh auto 0;
-    width: 90vw;
+  .text2 {
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    padding: 0 9vw;
   }
 
   .show {
@@ -95,6 +122,11 @@ const onSend = () => {
       width: 100%;
       height: auto;
     }
+  }
+
+  .button {
+    margin: 2vh auto 0;
+    width: 90vw;
   }
 }
 </style>

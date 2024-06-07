@@ -5,17 +5,17 @@
 <template>
     <!-- 图片上传组件 -->
     <div class="img-uploader" v-if="props.type == 'img'">
-        <van-uploader :after-read="afterReadImg" v-model="fileListImg" accept="image/*" max-count="1" />
+        <van-uploader :after-read="afterRead" v-model="fileListImg" accept="image/*" max-count="1" />
     </div>
 
     <!-- 音频上传组件 -->
     <div class="audio-uploader" v-else-if="props.type == 'audio'">
-        <van-uploader :after-read="afterReadAudio" accept="audio/*" max-count="1" />
+        <van-uploader :after-read="afterRead" accept="audio/*" max-count="1" />
     </div>
 
     <!-- 视频上传组件 -->
     <div class="video-uploader" v-else-if="props.type == 'video'">
-        <van-uploader :after-read="afterReadVideo" accept="video/*" max-count="1" />
+        <van-uploader :after-read="afterRead" accept="video/*" max-count="1" />
     </div>
 
     <div class="unable" v-else>
@@ -31,75 +31,17 @@ import { showToast } from 'vant';
 // 图片文件列表
 const fileListImg = ref([])
 
-// const props = defineProps(['type', 'addUrl'])
-const props = defineProps(['type'])
-
-// TODO 修改三个读后处理函数，改为新的请求地址
-/**
- * 图片读后处理函数
- */
-const afterReadImg = async (recvfile) => {
-    let file = recvfile.file
-    try {
-        // FIXME 修改这里
-        let res = 0
-        if (res.code === 0) {
-            props.addUrl('img', res.data)
-            showToast('图片上传成功')
-        } else {
-            showToast("图片上传失败" + res.message)
-        }
-    } catch (err) {
-        // props.addUrl('img', 'fail')
-        showToast("文件上传失败！网络或服务器错误")
-    }
-}
+const props = defineProps(['type', 'afterReadFunc'])
 
 /**
- * 音频读后处理函数
+ * afterRead，用于调用父组件函数，将读到的文件返回
+ * @param {接收到的文件} recvfile 
  */
-const afterReadAudio = async (recvfile) => {
-    let file = recvfile.file
-    // 上传图片并获取桶路径
-    try {
-        // FIXME 修改这里
-        let res = 0
-        if (res.code === 0) {
-            props.addUrl('audio', res.data)
-            showToast('音频上传成功')
-        } else {
-            showToast("音频上传失败" + res.message)
-        }
-    } catch (err) {
-        // 添加失败参数传递
-        // props.addUrl('audio', 'fail')
-        showToast("文件上传失败！网络或服务器错误")
-    }
+const afterRead = (recvfile) => {
+    props.afterReadFunc(recvfile)
 }
-
-/** 
- * 视频读后处理函数
- */
-const afterReadVideo = async (recvfile) => {
-    let file = recvfile.file
-    // 上传图片并获取桶路径
-    try {
-        // FIXME 修改这里
-        let res = 0
-        if (res.code === 0) {
-            props.addUrl('video', res.data)
-            showToast('视频上传成功')
-        } else {
-            showToast("视频上传失败" + res.message)
-        }
-    } catch (err) {
-        // 添加失败参数传递
-        // props.addUrl('video', 'fail')
-        showToast("文件上传失败！网络或服务器错误")
-    }
-}
-
 </script>
+
 
 <style scoped lang="less">
 // 整体样式

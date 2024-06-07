@@ -1,9 +1,14 @@
+<!-- FIXME 修复聊天框无限扩大的问题 -->
+
 <template>
     <Header title="图片问答"></Header>
     <div class="qa-container">
         <!-- 文件上传框 -->
         <div class="uploader-box">
-            <div class="note1">请上传图片</div>
+            <div class="note1">
+                <van-icon name="circle" color="rgba(84, 115, 232, 0.3)" />&nbsp;
+                请上传图片
+            </div>
             <div class="uploader">
                 <van-uploader v-model="picture" :after-read="afterRead" :max-count="1" preview-size="12vh" />
             </div>
@@ -66,6 +71,14 @@ const afterRead = () => {
 const sms = ref("")
 
 const sendMessage = async () => {
+    if (picture.value.length == 0) {
+        chatHistory.push({
+            name: 'PicWizard',
+            text: '请上传图片',
+            type: 'left'
+        })
+        return
+    }
     // 页面更新
     chatHistory.push({
         name: 'user',
@@ -78,27 +91,18 @@ const sendMessage = async () => {
 
     // 发送图片和文本
     const netWorkStore = useNetworkStore()
-    if (picture.value.length == 0) {
+    const res = await netWorkStore.pqa(picture.value[0].content, input)
+    if (code != -1) {
         chatHistory.push({
             name: 'PicWizard',
-            text: '请上传图片',
+            text: res.msg,
             type: 'left'
         })
     }
     else {
-        const res = await netWorkStore.pqa(picture.value[0].content, input)
-        if (code != -1) {
-            chatHistory.push({
-                name: 'PicWizard',
-                text: res.msg,
-                type: 'left'
-            })
-        }
-        else {
-            // 失败处理已做
-        }
+        // 失败处理已做
     }
-    
+
 }
 
 // 接受到的图片
@@ -172,7 +176,7 @@ const picture = ref([])
 
 :deep(.van-button--small) {
     height: 4.1vh;
-    width: 10.5vw;
+    width: 9.8vw;
     font-size: 12px;
     background: #1989FA;
     border: 0;

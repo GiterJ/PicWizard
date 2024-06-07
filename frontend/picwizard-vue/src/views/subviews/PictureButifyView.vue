@@ -3,11 +3,11 @@
   <div class="fix-container">
     <!-- 文字说明 -->
     <div class="text1">
-      <p>&nbsp;&nbsp;请上传图片</p>
+      <van-icon name="circle" color="rgba(84, 115, 232, 0.3)" />&nbsp;图片上传
     </div>
     <!-- 文件上传框 -->
     <div class="uploader">
-      <FileUploader type="img"></FileUploader>
+      <FileUploader type="img" :after-read-func="afterReadFunc" ></FileUploader>
       <div class="img-demo">
         <div class="over-text">
           示&nbsp;例&nbsp;图&nbsp;片
@@ -17,11 +17,11 @@
 
     <!-- 文字说明2 -->
     <div class="text2">
-      &nbsp;&nbsp;结果
+      <van-icon name="circle" color="rgba(84, 115, 232, 0.3)" />&nbsp;美颜结果
     </div>
     <!-- 展示框 -->
     <div class="show">
-      <img src="" alt="">
+      <img :src="genPicture" alt="">
     </div>
 
     <div class="button">
@@ -33,10 +33,31 @@
 <script setup>
 import BackHeader from '@/components/BackHeader.vue';
 import FileUploader from '@/components/FileUploader.vue';
+import { useNetworkStore } from '@/stores/network';
+import { ref } from 'vue';
+
+// 用户上传的文件
+const userPicture = ref("")
+const afterReadFunc = (file)=>{
+  userPicture.value = file.content
+}
 
 // TODO 完成发送逻辑
-const onSend = () => {
+const genPicture = ref("")
+const onSend = async () => {
+  // 用户必须先上传图片
+  if (userPicture.value == "") {
+    showToast("请上传图片")
+    return;
+  }
 
+  const networkStore = useNetworkStore()
+  const res = await networkStore.pbutify(userPicture.value)
+  if (res.code != -1) {
+    genPicture.value = res.msg
+  } else {
+    // 已做错误处理
+  }
 }
 </script>
 
@@ -45,12 +66,14 @@ const onSend = () => {
   width: 100vw;
 
   .text1 {
-    margin-top: 5vh;
-    font-size: 500;
+    margin-top: 4vh;
+    padding: 0 9vw;
   }
 
   .text2 {
-    margin-top: 3vh;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    padding: 0 9vw;
   }
 
   .uploader {

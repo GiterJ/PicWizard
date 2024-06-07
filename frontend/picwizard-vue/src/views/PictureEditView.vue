@@ -22,7 +22,7 @@
       </div>
       <div class="button4" @click="enterFix">
         <div class="text">
-          照片修复
+          人脸动漫化
         </div>
       </div>
     </div>

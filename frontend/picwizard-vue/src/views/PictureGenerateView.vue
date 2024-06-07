@@ -1,8 +1,13 @@
+<!-- FIXME 修复聊天框无限扩大的问题 -->
+
 <template>
   <Header title="图片生成"></Header>
   <!-- 图片生成框 -->
   <div class="uploader-box">
-    <div class="note1">生成图片：</div>
+    <div class="note1">
+      <van-icon name="circle" color="rgba(84, 115, 232, 0.3)" />
+      &nbsp;生成图片：
+    </div>
     <div class="uploader">
       <van-uploader disabled v-model="pictures" :after-read="afterRead" :max-count="1" preview-size="12vh" />
     </div>
@@ -59,6 +64,9 @@ const sms = ref("")
 
 // TODO 发送事件函数
 const sendMessage = async () => {
+  if(sms.value == ""){
+    return
+  }
   // 更新输入
   chatHistory.push({
     name: 'user',
@@ -72,7 +80,7 @@ const sendMessage = async () => {
   pictures.value.push({
     url: "https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg",
   })
-  
+
   // 发送请求
   const netWorkStore = useNetworkStore()
   const res = await netWorkStore.pgen(input)
@@ -111,7 +119,6 @@ const sendMessage = async () => {
     font-weight: bold;
   }
 
-  .uploader {}
 }
 
 .chat {

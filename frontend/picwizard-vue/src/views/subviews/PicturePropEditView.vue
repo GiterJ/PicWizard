@@ -3,12 +3,12 @@
   <div class="fix-container">
     <!-- 文字说明 -->
     <div class="text1">
-      <p>&nbsp;&nbsp;请上传图片</p>
+      <van-icon name="circle" color="rgba(84, 115, 232, 0.3)" />&nbsp;图片上传
     </div>
 
     <!-- 文件上传框 -->
     <div class="uploader">
-      <FileUploader type="img"></FileUploader>
+      <FileUploader type="img" :after-read-func="afterReadFunc" ></FileUploader>
       <div class="img-demo">
         <div class="over-text">
           示&nbsp;例&nbsp;图&nbsp;片
@@ -16,9 +16,20 @@
       </div>
     </div>
 
+    <!-- 功能选择 -->
+    <div class="text3">
+      <van-icon name="circle" color="rgba(84, 115, 232, 0.3)" />&nbsp;功能选择
+    </div>
+    <div class="choose">
+      <van-field v-model="funcChoose" is-link readonly placeholder="点击选择功能" @click="showPicker = true" />
+      <van-popup v-model:show="showPicker" round position="bottom">
+        <van-picker :columns="columns" @cancel="showPicker = false" @confirm="onConfirm" />
+      </van-popup>
+    </div>
+
     <!-- 文字说明2 -->
     <div class="text2">
-      &nbsp;&nbsp;结果
+      <van-icon name="circle" color="rgba(84, 115, 232, 0.3)" />&nbsp;属性编辑结果
     </div>
 
     <!-- 展示框 -->
@@ -26,8 +37,9 @@
       <img src="" alt="">
     </div>
 
+    <!-- 开始按钮 -->
     <div class="button">
-      <van-button type="primary" plain round icon="arrow-up" block @click="onSend">开始修复</van-button>
+      <van-button type="primary" plain round icon="arrow-up" block @click="onSend">开始处理</van-button>
     </div>
   </div>
 </template>
@@ -35,17 +47,65 @@
 <script setup>
 import BackHeader from '@/components/BackHeader.vue';
 import FileUploader from '@/components/FileUploader.vue';
+import { useNetworkStore } from '@/stores/network';
+import { showToast } from 'vant';
+import { ref } from 'vue';
 
-const onSend = () => {
+// 选择框用
+const funcChoose = ref('');
+const showPicker = ref(false);
+const onConfirm = ({ selectedOptions }) => {
+  showPicker.value = false;
+  funcChoose.value = selectedOptions[0].text;
+};
+const columns = [
+  { text: '变男人', value: 'TO_MALE' },
+  { text: '变女人', value: 'TO_FEMALE' },
+  { text: '变小孩', value: 'TO_KID' },
+  { text: '变老人', value: 'TO_OLD' },
+];
 
+// 用户上传的文件
+const userPicture = ref("")
+const afterReadFunc = (file)=>{
+  userPicture.value = file.content
 }
+
+// TODO 完成发送逻辑
+const genPicture = ref("")
+const onSend = async () => {
+  // 用户必须先上传图片
+  if (userPicture.value == "") {
+    showToast("请上传图片")
+    return;
+  }
+
+  if(funcChoose.value = ""){
+    showToast("请选择功能")
+    return;
+  }
+
+  // TODO 引入并完成网络代码
+  const networkStore = useNetworkStore()
+  const res = await networkStore.pedit(userPicture.value, funcChoose.value)
+  if (res.code != -1) {
+    genPicture.value = res.msg
+  } else {
+    // 已做错误处理
+  }
+}
+
 </script>
 
 <style scoped lang="less">
 .fix-container {
   width: 100vw;
 
-  .text1 {}
+  .text1 {
+    margin-top: 4vh;
+    padding: 0 9vw;
+  }
+
 
   .uploader {
     margin-top: 8px;
@@ -79,11 +139,15 @@ const onSend = () => {
 
   }
 
-  .text2 {}
+  .text2 {
+    margin-top: 2vh;
+    margin-bottom: 1vh;
+    padding: 0 9vw;
+  }
 
-  .button {
-    margin: 2vh auto 0;
-    width: 90vw;
+  .text3 {
+    margin-top: 1vh;
+    padding: 0 9vw;
   }
 
   .show {
@@ -97,6 +161,16 @@ const onSend = () => {
       width: 100%;
       height: auto;
     }
+  }
+
+  .choose {
+    width: 86vw;
+    margin: 0 auto;
+  }
+
+  .button {
+    margin: 2vh auto 0;
+    width: 90vw;
   }
 }
 </style>
