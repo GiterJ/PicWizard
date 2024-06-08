@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Interface</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            height: 100vh;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #f4f4f4;
+            padding: 10px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar h2 {
+            text-align: center;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #eaeaea;
+            cursor: pointer;
+            text-align: center;
+        }
+        .sidebar ul li:hover {
+            background-color: #ccc;
+        }
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .input-area {
+            display: flex;
+            padding: 20px;
+            border-top: 1px solid #ccc;
+        }
+        .input-area input {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .input-area button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        .input-area button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script src="js/vue.js"></script>
+    <script src="js/axios0.18.js"></script>
+</head>
+<body>
+<div class="sidebar">
+    <h2>PicWizard</h2>
+    <ul>
+        <li>图片问答</li>
+        <li>图片生成</li>
+        <li>人脸融合</li>
+        <li>AI美颜</li>
+        <li>属性编辑</li>
+        <li>照片修复</li>
+        <li>视频生成</li>
+    </ul>
+</div>
+<div class="chat-container">
+    <div class="messages" id="messages">
+        <!-- Messages will appear here -->
+    </div>
+    <div class="input-area">
+        <input type="text" id="userInput" placeholder="输入文字..." />
+        <button @click="sendMessage(this)">发送</button>
+    </div>
+</div>
+
+<script>
+    new Vue({
+        el: "input-area",
+        methods:{
+            sendMessage(v){
+                console.log(v);
+            }
+        }
+    })
+    // function sendMessage() {
+    //     const userInput = document.getElementById('userInput');
+    //     const message = userInput.value;
+    //     if (message.trim() !== '') {
+    //         const messagesContainer = document.getElementById('messages');
+    //         const newMessage = document.createElement('div');
+    //         newMessage.textContent = message;
+    //         messagesContainer.appendChild(newMessage);
+    //         userInput.value = '';
+    //         messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    //     }
+    // }
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.springframework:spring-jdbc:6.1.8">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../../../../../Java/apache-maven-3.6.3-bin/apache-maven-3.6.3/conf/repo/org/springframework/spring-jdbc/6.1.8/spring-jdbc-6.1.8.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../../../../../../Java/apache-maven-3.6.3-bin/apache-maven-3.6.3/conf/repo/org/springframework/spring-jdbc/6.1.8/spring-jdbc-6.1.8-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../../../../../../Java/apache-maven-3.6.3-bin/apache-maven-3.6.3/conf/repo/org/springframework/spring-jdbc/6.1.8/spring-jdbc-6.1.8-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
