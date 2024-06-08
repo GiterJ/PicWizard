@@ -14,10 +14,10 @@ import java.util.List;
 public class UserController {
     @Resource
     private UserDao userDao;
-//    @RequestMapping("/test")
-//    public List<User> findAll(){
-//        return userDao.selectAll();
-//    }
+    @RequestMapping("/testforlogin")
+    public List<User> findAll(){
+        return userDao.selectAll();
+    }
     @RequestMapping("/login")
     public JSONUtil login(@RequestParam("name")String name,@RequestParam("password")String password){
         return null;
