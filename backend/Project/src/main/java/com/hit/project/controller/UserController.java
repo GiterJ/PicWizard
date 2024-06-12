@@ -19,7 +19,7 @@ public class UserController {
         return userDao.selectAll();
     }
     @RequestMapping("/login")
-    public JSONUtil login(@RequestParam("name")String name,@RequestParam("password")String password){
+    public JSONUtil login(@RequestParam("name")String name,@RequestParam("password")String password) {
         return null;
     }
 }

@@ -34,6 +34,7 @@ public class FaceMergeServiceImpl implements FaceMergeService {
         System.out.println("[INFO]:人脸融合结束");
         String res = response.body().string();
         JSONObject jsonObject = new JSONObject(res);
+        //System.out.println("[INFO]:result"+jsonObject);
         int code = jsonObject.getString("error_msg").equals("SUCCESS")?200:-1;
         JSONObject resultObject = jsonObject.getJSONObject("result");
         String merge_image = code==200?resultObject.getString("merge_image"):jsonObject.getString("error_msg");

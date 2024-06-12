@@ -6,6 +6,8 @@ import com.hit.project.utils.JSONUtil;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class PicController {
     @Autowired
     private PicGenerateService picGenerateService;
@@ -33,8 +36,17 @@ public class PicController {
     }
     @PostMapping("/picqa")
     public JSONUtil picQA(@RequestParam("image")String image,@RequestParam("question")String question) throws JSONException, IOException, InterruptedException {
+        System.out.println("[INFO]:传入的question:"+question);
+//        response.setHeader("Access-Control-Allow-Origin", "*");
+//        response.setHeader("Access-Control-Allow-Methods", "POST,GET,PUT,DELETE");
+//        response.setHeader("Access-Control-Max-Age", "3600");
+//        response.setHeader("Access-Control-Allow-Headers", "*");
+//        response.setHeader("Access-Control-Allow-Credentials", "true");
         picQAService.sendRequest(image,question);
-        return picQAService.getResponse();
+        JSONUtil jsonUtil = picQAService.getResponse();
+        //System.out.println(jsonUtil);
+//        return picQAService.getResponse();
+        return jsonUtil;
     }
     @PostMapping("/facemerge")
     public JSONUtil faceMerge(@RequestParam("target")String target,@RequestParam("template")String template) throws JSONException, IOException {
@@ -50,7 +62,7 @@ public class PicController {
     public JSONUtil faceAnime(@RequestParam("image")String image) throws JSONException, IOException {
         return faceAnimeService.faceAnime(image);
     }
-    @PostMapping("beauty")
+    @PostMapping("/beauty")
     public JSONUtil beauty(@RequestParam("image")String image) throws JSONException {
         return beautyService.beauty(image);
     }

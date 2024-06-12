@@ -25,11 +25,17 @@ public class PicGenerateServiceImpl implements PicGenerateService {
             System.out.println("[INFO]:图片生成错误");
             System.out.println(e.getMessage());
         }
-        System.out.println("[INFO]:成功生成图片");
-        String url = result.getOutput().getResults().get(0).get("url");
-        System.out.println("[INFO]:图片链接为:"+url);
-        int code = result.getOutput().getTaskStatus().equals("SUCCEEDED")?200:-1;
-        return new JSONUtil(code,url);
+        if(result!=null){
+            System.out.println("[INFO]:成功生成图片");
+            String url = result.getOutput().getResults().get(0).get("url");
+            System.out.println("[INFO]:图片链接为:"+url);
+            int code = result.getOutput().getTaskStatus().equals("SUCCEEDED")?200:-1;
+            return new JSONUtil(code,url);
+        }
+        else {
+            return new JSONUtil(-1,"服务器未响应或图片格式有误");
+        }
+
     }
 
     public static void main(String[] args) throws NoApiKeyException {

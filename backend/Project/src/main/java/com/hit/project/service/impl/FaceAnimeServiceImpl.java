@@ -8,6 +8,8 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
+import java.net.URLEncoder;
+import java.util.Base64;
 
 import static com.hit.project.utils.BaiduUtil.getAccessToken;
 import static com.hit.project.utils.BaiduUtil.getFileContentAsBase64;
@@ -19,6 +21,9 @@ public class FaceAnimeServiceImpl implements FaceAnimeService {
     static final OkHttpClient HTTP_CLIENT = new OkHttpClient().newBuilder().build();
     @Override
     public JSONUtil faceAnime(String image) throws IOException, JSONException {
+        byte[] decodedImage = Base64.getDecoder().decode(image);
+        String base64Image = Base64.getEncoder().encodeToString(decodedImage);
+        image = URLEncoder.encode(base64Image, "utf-8");
         MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
         RequestBody body = RequestBody.create(mediaType, "image="+image);
         Request request = new Request.Builder()
@@ -33,6 +38,7 @@ public class FaceAnimeServiceImpl implements FaceAnimeService {
         String res = response.body().string();
         if(res!=null){
             JSONObject jsonObject = new JSONObject(res);
+            System.out.println("[INFO]:jsonObject:"+jsonObject);
             return new JSONUtil(200,jsonObject.getString("image"));
         }
         return new JSONUtil(-1,"服务器未响应");
