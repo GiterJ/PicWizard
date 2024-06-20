@@ -4,13 +4,14 @@ import { Form, showToast } from "vant";
 
 export const useNetworkStore = defineStore("network", () => {
     const api = axios.create({
-        baseURL: "http://127.0.0.1:4523/m1/4612346-0-default",
-        timeout: 10000,
+        baseURL: "http://192.168.1.108:8081",
+        // baseURL: "/api",
+        timeout: 40000,
         headers: {
             'Content-Type': 'multipart/form-data'
         }
     });
-
+    
     /**
      * 获取问答结果
      * @param {输入图片} image 
@@ -25,6 +26,7 @@ export const useNetworkStore = defineStore("network", () => {
         // 发送请求
         try {
             const res = await api.post("/picqa", formData)
+            console.log(res)
             // 成功返回
             if (res.status == 200) {
                 return res.data
@@ -34,8 +36,9 @@ export const useNetworkStore = defineStore("network", () => {
             }
         }
         // 失败返回网络错误
-        catch {
-            console.log("error", "网络错误")
+        catch (err){
+            showToast("error 网络错误" + err)
+            console.log("error", err)
             return {
                 code: -1,
                 msg: "网络错误"

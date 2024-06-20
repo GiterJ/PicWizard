@@ -39,7 +39,7 @@ import { ref } from 'vue';
 // 用户上传的文件
 const userPicture = ref("")
 const afterReadFunc = (file)=>{
-  userPicture.value = file.content
+  userPicture.value = file.content.slice('data:image/jpeg;base64,'.length)
 }
 
 // TODO 完成发送逻辑
@@ -54,7 +54,7 @@ const onSend = async () => {
   const networkStore = useNetworkStore()
   const res = await networkStore.pbutify(userPicture.value)
   if (res.code != -1) {
-    genPicture.value = res.msg
+    genPicture.value = "data:image/jpeg;base64,"+res.msg
   } else {
     // 已做错误处理
   }
@@ -83,7 +83,7 @@ const onSend = async () => {
     align-items: center;
 
     .img-demo {
-      background-image: url("https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg");
+      background-image: url("E:\SE-project\PicWizard\frontend\picwizard-vue\src\assets\images.jpg");
       background-repeat: no-repeat;
       background-size: cover;
       width: 35vw;

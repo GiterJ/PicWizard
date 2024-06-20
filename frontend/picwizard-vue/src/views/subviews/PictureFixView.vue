@@ -21,7 +21,7 @@
     </div>
     <!-- 展示框 -->
     <div class="show">
-      <img src="" alt="">
+      <img :src="genPicture" alt="">
     </div>
 
     <div class="button">
@@ -48,18 +48,19 @@ const onSend = async () => {
     showToast("请上传图片")
     return;
   }
-
+  
   const networkStore = useNetworkStore()
   const res = await networkStore.pfix(userPicture.value)
   if (res.code != -1) {
-    genPicture.value = res.msg
+    genPicture.value = 'data:image/jpeg;base64,' + res.msg
   } else {
     // 已做错误处理
   }
 }
 
 const afterReadFunc = (file) => {
-  userPicture.value = file.content
+  userPicture.value = file.content.slice('data:image/jpeg;base64,'.length)
+  // userPicture.value = file.content
 }
 
 </script>
@@ -80,7 +81,7 @@ const afterReadFunc = (file) => {
     align-items: center;
 
     .img-demo {
-      background-image: url("https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg");
+      background-image: url("E:\SE-project\PicWizard\frontend\picwizard-vue\src\assets\images.jpg");
       background-repeat: no-repeat;
       background-size: cover;
       width: 35vw;

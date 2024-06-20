@@ -34,7 +34,7 @@
 
     <!-- 展示框 -->
     <div class="show">
-      <img src="" alt="">
+      <img :src="genPicture" alt="">
     </div>
 
     <!-- 开始按钮 -->
@@ -54,9 +54,11 @@ import { ref } from 'vue';
 // 选择框用
 const funcChoose = ref('');
 const showPicker = ref(false);
+let chooseValue = ""
 const onConfirm = ({ selectedOptions }) => {
   showPicker.value = false;
   funcChoose.value = selectedOptions[0].text;
+  chooseValue = selectedOptions[0].value;
 };
 const columns = [
   { text: '变男人', value: 'TO_MALE' },
@@ -68,7 +70,7 @@ const columns = [
 // 用户上传的文件
 const userPicture = ref("")
 const afterReadFunc = (file)=>{
-  userPicture.value = file.content
+  userPicture.value = file.content.slice('data:image/jpeg;base64,'.length)
 }
 
 // TODO 完成发送逻辑
@@ -87,9 +89,10 @@ const onSend = async () => {
 
   // TODO 引入并完成网络代码
   const networkStore = useNetworkStore()
-  const res = await networkStore.pedit(userPicture.value, funcChoose.value)
+  console.log(funcChoose.value)
+  const res = await networkStore.pedit(userPicture.value, chooseValue)
   if (res.code != -1) {
-    genPicture.value = res.msg
+    genPicture.value = "data:image/jpeg;base64,"+res.msg
   } else {
     // 已做错误处理
   }
@@ -114,7 +117,7 @@ const onSend = async () => {
     align-items: center;
 
     .img-demo {
-      background-image: url("https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg");
+      background-image: url("E:\SE-project\PicWizard\frontend\picwizard-vue\src\assets\images.jpg");
       background-repeat: no-repeat;
       background-size: cover;
       width: 35vw;

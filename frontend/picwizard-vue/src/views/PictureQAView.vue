@@ -2,6 +2,7 @@
 
 <template>
     <Header title="图片问答"></Header>
+    <!-- <div class="testbutton" @click="test"></div> -->
     <div class="qa-container">
         <!-- 文件上传框 -->
         <div class="uploader-box">
@@ -46,19 +47,10 @@ import ChatBox from '@/components/ChatBox.vue';
 import { useNetworkStore } from '@/stores/network';
 import { reactive, ref } from 'vue';
 import { showToast } from 'vant';
+import axios from 'axios';
 
 // 聊天记录
 const chatHistory = reactive([
-    {
-        name: 'user',
-        text: '这张图片里有什么',
-        type: 'right'
-    },
-    {
-        name: 'PicWizard',
-        text: '这里面是一条狗',
-        type: 'left'
-    },
 ])
 
 // TODO 补充上传处理函数 base64编码
@@ -92,7 +84,7 @@ const sendMessage = async () => {
     // 发送图片和文本
     const netWorkStore = useNetworkStore()
     const res = await netWorkStore.pqa(picture.value[0].content, input)
-    if (code != -1) {
+    if (res.code != -1) {
         chatHistory.push({
             name: 'PicWizard',
             text: res.msg,
@@ -102,15 +94,27 @@ const sendMessage = async () => {
     else {
         // 失败处理已做
     }
-
 }
 
 // 接受到的图片
 const picture = ref([])
 
+// test connection
+const test = () => {
+    axios.get("/api/testforlogin").then(res => {
+        console.log(res)
+    })
+}
+
 </script>
 
 <style scoped lang="less">
+.testbutton {
+    width: 100px;
+    height: 100px;
+    background-color: #a82121;
+}
+
 .qa-container {
     .uploader-box {
         margin: 2.5vh auto;

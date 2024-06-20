@@ -43,16 +43,16 @@ import { useNetworkStore } from '@/stores/network';
 // 聊天记录
 // TODO 添加聊天记录
 const chatHistory = reactive([
-  {
-    name: 'user',
-    text: '帮我生成一章小猫图片',
-    type: 'right'
-  },
-  {
-    name: 'PicWizard',
-    text: '好的，已为您生成',
-    type: 'left'
-  }
+  // {
+  //   name: 'user',
+  //   text: '帮我生成一章小猫图片',
+  //   type: 'right'
+  // },
+  // {
+  //   name: 'PicWizard',
+  //   text: '好的，已为您生成',
+  //   type: 'left'
+  // }
 ])
 
 // TODO 添加接收图片逻辑
@@ -76,11 +76,6 @@ const sendMessage = async () => {
   const input = sms.value
   sms.value = ""
 
-  // BUG 测试用，需要删除
-  pictures.value.push({
-    url: "https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg",
-  })
-
   // 发送请求
   const netWorkStore = useNetworkStore()
   const res = await netWorkStore.pgen(input)
@@ -88,7 +83,7 @@ const sendMessage = async () => {
     // 最多展示两张生成图片
     if (pictures.value.length < 2) {
       pictures.value.push({
-        "url": res.data.msg,
+        "url": res.msg,
       })
     }
     // 如果大于两张图片，需要删去第一张
