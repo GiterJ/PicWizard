@@ -7,6 +7,8 @@ import PictureButifyView from '@/views/subviews/PictureButifyView.vue'
 import PictureFixView from '@/views/subviews/PictureFixView.vue'
 import PictureMergeView from '@/views/subviews/PictureMergeView.vue'
 import PicturePropEditView from '@/views/subviews/PicturePropEditView.vue'
+import LoginView from '@/views/LoginView.vue'
+import RegisterView from '@/views/RegisterView.vue'
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -55,6 +57,16 @@ const router = createRouter({
       path: '/ppe',
       name: 'ppe',
       component: PicturePropEditView
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: LoginView
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: RegisterView
     }
   ]
 })

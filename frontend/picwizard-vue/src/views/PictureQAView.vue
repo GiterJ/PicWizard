@@ -38,6 +38,7 @@
         </div>
     </div>
 
+    <NavBar />
 
 </template>
 
@@ -48,6 +49,7 @@ import { useNetworkStore } from '@/stores/network';
 import { reactive, ref } from 'vue';
 import { showToast } from 'vant';
 import axios from 'axios';
+import NavBar from '@/components/NavBar.vue';
 
 // 聊天记录
 const chatHistory = reactive([
@@ -131,7 +133,9 @@ const test = () => {
             font-weight: bold;
         }
 
-        .uploader {}
+        .uploader {
+            
+        }
     }
 
     .chat {

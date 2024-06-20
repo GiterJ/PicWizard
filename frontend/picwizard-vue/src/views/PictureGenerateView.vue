@@ -32,6 +32,8 @@
         <van-icon name="guide-o" size="large" /></van-button>
     </div>
   </div>
+
+  <NavBar />
 </template>
 
 <script setup>
@@ -39,6 +41,7 @@ import Header from '@/components/Header.vue';
 import ChatBox from '@/components/ChatBox.vue';
 import { reactive, ref } from 'vue';
 import { useNetworkStore } from '@/stores/network';
+import NavBar from '@/components/NavBar.vue';
 
 // 聊天记录
 // TODO 添加聊天记录

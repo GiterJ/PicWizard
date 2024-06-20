@@ -28,6 +28,9 @@
       <van-button type="primary" plain round icon="arrow-up" block @click="onSend">开始处理</van-button>
     </div>
   </div>
+
+  <NavBar />
+
 </template>
 
 <script setup>
@@ -35,6 +38,7 @@ import BackHeader from '@/components/BackHeader.vue';
 import FileUploader from '@/components/FileUploader.vue';
 import { useNetworkStore } from '@/stores/network';
 import { showToast } from 'vant';
+import NavBar from '@/components/NavBar.vue';
 import { reactive, ref } from 'vue';
 
 // 用户上传的图片
@@ -48,7 +52,7 @@ const onSend = async () => {
     showToast("请上传图片")
     return;
   }
-  
+
   const networkStore = useNetworkStore()
   const res = await networkStore.pfix(userPicture.value)
   if (res.code != -1) {

@@ -28,6 +28,9 @@
       <van-button type="primary" plain round icon="arrow-up" block @click="onSend">开始修复</van-button>
     </div>
   </div>
+
+  <NavBar />
+
 </template>
 
 <script setup>
@@ -35,6 +38,7 @@ import BackHeader from '@/components/BackHeader.vue';
 import FileUploader from '@/components/FileUploader.vue';
 import { useNetworkStore } from '@/stores/network';
 import { ref } from 'vue';
+import NavBar from '@/components/NavBar.vue';
 
 // 用户上传的文件
 const userPicture = ref("")

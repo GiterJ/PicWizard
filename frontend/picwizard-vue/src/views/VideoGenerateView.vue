@@ -36,12 +36,16 @@
       <van-button type="primary" plain round icon="arrow-up" block @click="onSend">开始生成</van-button>
     </div>
   </div>
+
+  <NavBar />
+
 </template>
 
 <script setup>
 import { reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import FileUploader from '@/components/FileUploader.vue';
+import NavBar from '@/components/NavBar.vue';
 import 'vant/es/toast/style'
 
 const router = useRouter()

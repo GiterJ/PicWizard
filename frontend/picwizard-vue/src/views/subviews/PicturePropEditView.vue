@@ -26,7 +26,7 @@
         <van-picker :columns="columns" @cancel="showPicker = false" @confirm="onConfirm" />
       </van-popup>
     </div>
-
+    
     <!-- 文字说明2 -->
     <div class="text2">
       <van-icon name="circle" color="rgba(84, 115, 232, 0.3)" />&nbsp;属性编辑结果
@@ -42,6 +42,7 @@
       <van-button type="primary" plain round icon="arrow-up" block @click="onSend">开始处理</van-button>
     </div>
   </div>
+  <NavBar />
 </template>
 
 <script setup>
@@ -50,6 +51,7 @@ import FileUploader from '@/components/FileUploader.vue';
 import { useNetworkStore } from '@/stores/network';
 import { showToast } from 'vant';
 import { ref } from 'vue';
+import NavBar from '@/components/NavBar.vue';
 
 // 选择框用
 const funcChoose = ref('');
@@ -73,7 +75,6 @@ const afterReadFunc = (file)=>{
   userPicture.value = file.content.slice('data:image/jpeg;base64,'.length)
 }
 
-// TODO 完成发送逻辑
 const genPicture = ref("")
 const onSend = async () => {
   // 用户必须先上传图片
@@ -87,7 +88,6 @@ const onSend = async () => {
     return;
   }
 
-  // TODO 引入并完成网络代码
   const networkStore = useNetworkStore()
   console.log(funcChoose.value)
   const res = await networkStore.pedit(userPicture.value, chooseValue)

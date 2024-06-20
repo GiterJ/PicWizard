@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import axios from "axios";
-import { Form, showToast } from "vant";
+import { showToast } from "vant";
 
 export const useNetworkStore = defineStore("network", () => {
     const api = axios.create({
@@ -46,7 +46,6 @@ export const useNetworkStore = defineStore("network", () => {
         }
     };
 
-    // TODO 等待后端改为body传参数
     /**
      * 获取图片生成结果
      * @param {提示词} prompt 
