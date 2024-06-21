@@ -5,23 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bbaa7101-dccd-4979-bdbb-e1cbba03e3dd" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/images-ChxdKiEs.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/index-BCwOSAB3.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/index-Bu5lhB2x.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/logo-BwDezV4I.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/PicClearService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/PicColorService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/PicDefogService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/PicClearServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/PicColorServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/PicDefogServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hit/project/controller/PicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/controller/PicController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hit/project/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hit/project/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hit/project/service/LoginService.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/AttributeEditServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/AttributeEditServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/BeautyServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/BeautyServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/FaceAnimeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/FaceAnimeServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/FaceMergeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/FaceMergeServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/PicGenerateServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/PicGenerateServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/LoginServiceImpl.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/PicQAServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/PicQAServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/hit/project/controller/PicController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hit/project/controller/PicController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hit/project/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hit/project/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hit/project/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hit/project/entity/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hit/project/service/LoginService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hit/project/service/impl/AttributeEditServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hit/project/service/impl/AttributeEditServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hit/project/service/impl/BeautyServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hit/project/service/impl/BeautyServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hit/project/service/impl/FaceAnimeServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hit/project/service/impl/FaceAnimeServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hit/project/service/impl/FaceMergeServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hit/project/service/impl/FaceMergeServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hit/project/service/impl/LoginServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hit/project/service/impl/PicGenerateServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hit/project/service/impl/PicGenerateServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/hit/project/service/impl/PicQAServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hit/project/service/impl/PicQAServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -100,7 +112,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/Code/Software/Lab1",
+    "last_opened_file_path": "E:/explorer download/face_score_java_demo/face_score",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -108,7 +120,7 @@
     "project.structure.last.edited": "SDK",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "settings.findbugs.project",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "spring.configuration.checksum": "9e727fdd3aec8274f46685441900280d",
     "vue.rearranger.settings.migration": "true"
   },
@@ -166,7 +178,13 @@
       <workItem from="1717817029475" duration="789000" />
       <workItem from="1717832395368" duration="665000" />
       <workItem from="1717939923705" duration="33000" />
-      <workItem from="1718184030645" duration="12513000" />
+      <workItem from="1718184030645" duration="12546000" />
+      <workItem from="1718237397582" duration="2126000" />
+      <workItem from="1718523898566" duration="704000" />
+      <workItem from="1718801396416" duration="2144000" />
+      <workItem from="1718849750218" duration="3755000" />
+      <workItem from="1718874461229" duration="1952000" />
+      <workItem from="1718949764667" duration="10363000" />
     </task>
     <task id="LOCAL-00001" summary="新增了图片生成和图片问答功能">
       <created>1717633618361</created>
@@ -217,7 +235,14 @@
       <option name="project" value="LOCAL" />
       <updated>1717817121428</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="前后端完成对接">
+      <created>1718200482139</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1718200482139</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,7 +257,8 @@
     <MESSAGE value="新增了美颜功能" />
     <MESSAGE value="1.0" />
     <MESSAGE value="下一步将实现登录功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="下一步将实现登录功能" />
+    <MESSAGE value="前后端完成对接" />
+    <option name="LAST_COMMIT_MESSAGE" value="前后端完成对接" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

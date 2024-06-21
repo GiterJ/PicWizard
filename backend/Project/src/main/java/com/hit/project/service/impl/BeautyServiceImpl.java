@@ -23,7 +23,7 @@ public class BeautyServiceImpl implements BeautyService {
         HttpURLConnection conn = null;
         try{
             System.out.println("[INFO]:美颜开始");
-            URL url = new URL("https://openapi.mtlab.meitu.com/v1/beauty?api_key=0530ef25a32e44f5bcde664804bf4879&api_secret=bdd61ad26b3f41d6835f2e07d02d6c71");
+            URL url = new URL("https://openapi.mtlab.meitu.com/v1/beauty?api_key=2024fecb3adc42c68b24cbf42565bc81&api_secret=787adcb84fd545188a5c528ed19da9d8");
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
 
@@ -66,15 +66,17 @@ public class BeautyServiceImpl implements BeautyService {
                 ioe.printStackTrace();
             }
         }
-        if(result!=null){
-            JSONObject jsonObject = new JSONObject(result.toString());
+        JSONObject jsonObject = new JSONObject(result.toString());
+        if (jsonObject.has("media_info_list")) {
             JSONArray mediaInfoList  = jsonObject.getJSONArray("media_info_list");
             JSONObject mediaDataObject = mediaInfoList .getJSONObject(0);
             String mediaData = mediaDataObject.getString("media_data");
-            JSONUtil jsonUtil = new JSONUtil(200,mediaData);
-            return jsonUtil;
+            return new JSONUtil(200,mediaData);
+        } else {
+            System.out.println("[INFO]:服务器未响应或者图片格式错误");
+            return new JSONUtil(-1, "服务器未响应或图片格式错误");
         }
-        return new JSONUtil(-1,"服务器未响应");
+
     }
 
     public static void main(String[] args) throws IOException, JSONException {

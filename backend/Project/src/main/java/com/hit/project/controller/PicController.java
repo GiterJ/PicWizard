@@ -30,6 +30,12 @@ public class PicController {
     private FaceAnimeService faceAnimeService;
     @Autowired
     private BeautyService beautyService;
+    @Autowired
+    private PicColorService picColorService;
+    @Autowired
+    private PicClearService picClearService;
+    @Autowired
+    private PicDefogService picDefogService;
     @PostMapping("/generatepic")
     public JSONUtil generatePic(@RequestParam("prompt")String prompt){
         return picGenerateService.picGenerate(prompt);
@@ -37,16 +43,8 @@ public class PicController {
     @PostMapping("/picqa")
     public JSONUtil picQA(@RequestParam("image")String image,@RequestParam("question")String question) throws JSONException, IOException, InterruptedException {
         System.out.println("[INFO]:传入的question:"+question);
-//        response.setHeader("Access-Control-Allow-Origin", "*");
-//        response.setHeader("Access-Control-Allow-Methods", "POST,GET,PUT,DELETE");
-//        response.setHeader("Access-Control-Max-Age", "3600");
-//        response.setHeader("Access-Control-Allow-Headers", "*");
-//        response.setHeader("Access-Control-Allow-Credentials", "true");
         picQAService.sendRequest(image,question);
-        JSONUtil jsonUtil = picQAService.getResponse();
-        //System.out.println(jsonUtil);
-//        return picQAService.getResponse();
-        return jsonUtil;
+        return picQAService.getResponse();
     }
     @PostMapping("/facemerge")
     public JSONUtil faceMerge(@RequestParam("target")String target,@RequestParam("template")String template) throws JSONException, IOException {
@@ -65,6 +63,18 @@ public class PicController {
     @PostMapping("/beauty")
     public JSONUtil beauty(@RequestParam("image")String image) throws JSONException {
         return beautyService.beauty(image);
+    }
+    @PostMapping("/piccolor")
+    public JSONUtil picColor(@RequestParam("image")String image) throws JSONException, IOException {
+        return picColorService.picColor(image);
+    }
+    @PostMapping("/picclear")
+    public JSONUtil picClear(@RequestParam("image")String image) throws JSONException, IOException {
+        return picClearService.picClear(image);
+    }
+    @PostMapping("/picdefog")
+    public JSONUtil picDefog(@RequestParam("image")String image) throws JSONException, IOException {
+        return picDefogService.picDefog(image);
     }
     @RequestMapping("/test")
     public String test(){

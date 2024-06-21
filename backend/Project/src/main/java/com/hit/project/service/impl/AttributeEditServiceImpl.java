@@ -35,10 +35,15 @@ public class AttributeEditServiceImpl implements AttributeEditService {
         System.out.println("[INFO]:人脸属性编辑结束");
         String res = response.body().string();
         JSONObject jsonObject = new JSONObject(res);
-        System.out.println("[INFO]:result:"+jsonObject);
         int code = jsonObject.getString("error_msg").equals("SUCCESS")?200:-1;
-        JSONObject resultObject = jsonObject.getJSONObject("result");
-        String imageEdit = code==200?resultObject.getString("image"):jsonObject.getString("error_msg");
+        String imageEdit;
+        if (code == 200) {
+            JSONObject resultObject = jsonObject.getJSONObject("result");
+            imageEdit = resultObject.getString("image");
+        } else {
+            System.out.println("[INFO]:服务器未响应或者图片格式错误");
+            imageEdit = jsonObject.getString("error_msg");
+        }
         return new JSONUtil(code,imageEdit);
     }
 

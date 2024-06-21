@@ -36,12 +36,13 @@ public class FaceAnimeServiceImpl implements FaceAnimeService {
         Response response = HTTP_CLIENT.newCall(request).execute();
         System.out.println("[INFO]:动漫化结束");
         String res = response.body().string();
-        if(res!=null){
-            JSONObject jsonObject = new JSONObject(res);
-            System.out.println("[INFO]:jsonObject:"+jsonObject);
-            return new JSONUtil(200,jsonObject.getString("image"));
+        JSONObject jsonObject = new JSONObject(res);
+        //System.out.println("[INFO]:jsonObject:"+jsonObject);
+        if(!jsonObject.has("image")){
+            System.out.println("[INFO]:服务器未响应或者图片格式错误");
+            return new JSONUtil(-1,"服务器未响应或图片格式错误");
         }
-        return new JSONUtil(-1,"服务器未响应");
+        return new JSONUtil(200,jsonObject.getString("image"));
     }
     public static void main(String []args) throws IOException, JSONException {
         String pic1 = "src/main/resources/FaceMergeTemplateTest.jpg";
