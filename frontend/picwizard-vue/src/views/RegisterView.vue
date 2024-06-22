@@ -31,9 +31,11 @@
 import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import 'vant/es/toast/style'
+import { useNetworkStore } from '@/stores/network';
 
 
 const router = useRouter()
+const networkStore = useNetworkStore()
 const userinfo = reactive({
     useraccount: "",
     password: "",
@@ -43,13 +45,20 @@ const userinfo = reactive({
 // TODO 对接后端，完成注册
 // 注册函数
 const Register = async () => {
-    // 调用封装好的函数，向服务器申请注册并自动登录
-    // try {
-    //     let res = await UserInfoStore.Register(userinfo.useraccount, userinfo.password, userinfo.checkpassword)
-    //     router.replace('/changeinfo')
-    // } catch (err) {
-    //     console.log(err)
-    // }
+    try {
+        let res = await networkStore.pregister(userinfo.useraccount, userinfo.password)
+        if (res.code == 200) {
+            showToast('注册成功！')
+            router.replace('/login')
+        }
+        else {
+            showToast('注册失败！')
+            console.log(res.message)
+        }
+    } catch (err) {
+        console.log(err)
+        showToast(err)
+    }
 }
 
 </script>

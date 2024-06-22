@@ -4,7 +4,7 @@ import { showToast } from "vant";
 
 export const useNetworkStore = defineStore("network", () => {
     const api = axios.create({
-        baseURL: "http://192.168.1.108:8081",
+        baseURL: "http://192.168.1.105:8081",
         // baseURL: "/api",
         timeout: 40000,
         headers: {
@@ -166,5 +166,49 @@ export const useNetworkStore = defineStore("network", () => {
         }
     }
 
-    return { api, pgen, pqa, pmerge, pfix, pbutify, pedit }
+    const pregister = async (name, password) => {
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('password', password);
+        try {
+            const res = await api.post("/regis", formData)
+            console.log(res)
+            if(res.status == 200) {
+                return res.data
+            }
+            else {
+                showToast("Error", res.data.msg)
+                return res.data
+            }
+        }catch {
+            return {
+                code: -1,
+                msg: "网络错误"
+            }
+        }
+    }
+
+    const plogin = async (name, password) => {
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('password', password);
+        try {
+            const res = await api.post("/login", formData)
+            if(res.status == 200) {
+                return res.data
+            }
+            else {
+                showToast("Error", res.data.msg)
+                return res.data
+            }
+        }catch {
+            return {
+                code: -1,
+                msg: "网络错误"
+            }
+        }
+    }
+
+
+    return { api, pgen, pqa, pmerge, pfix, pbutify, pedit, pregister, plogin }
 });

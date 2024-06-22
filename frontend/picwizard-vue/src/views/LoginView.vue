@@ -1,5 +1,5 @@
 <!-- 登录页面 -->
- <!-- TODO 对接后端，完成自动登录，加入router guarden -->
+<!-- TODO 对接后端，完成自动登录，加入router guarden -->
 <template>
     <div class="login">
         <!-- 软件图标 -->
@@ -38,8 +38,10 @@ import 'vant/es/toast/style'
 import { showToast } from 'vant';
 import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
+import { useNetworkStore } from '@/stores/network';
 
 const router = useRouter()
+const networkStore = useNetworkStore()
 
 // 输入框响应式数据
 const userinfo = reactive({
@@ -51,9 +53,16 @@ const userinfo = reactive({
 // 登录函数
 const Login = async () => {
     try {
-        // let res = await Login_wrap(userinfo.useraccount, userinfo.password)
-        showToast('登录成功！')
-        router.replace('/seeuindex')
+        let res = await networkStore.plogin(userinfo.useraccount, userinfo.password)
+        console.log("hello",res.code)
+        if (res.code == 200) {
+            showToast('登录成功！')
+            router.replace('/pqa')
+        }
+        else {
+            showToast('登录失败！')
+            console.log(res.message)
+        }
     } catch (err) {
         console.log(err)
         showToast(err)
