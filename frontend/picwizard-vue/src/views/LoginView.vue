@@ -39,9 +39,11 @@ import { showToast } from 'vant';
 import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { useNetworkStore } from '@/stores/network';
+import { useUserStore } from '@/stores/user';
 
 const router = useRouter()
 const networkStore = useNetworkStore()
+const userStore = useUserStore()
 
 // 输入框响应式数据
 const userinfo = reactive({
@@ -57,6 +59,10 @@ const Login = async () => {
         console.log("hello",res.code)
         if (res.code == 200) {
             showToast('登录成功！')
+            // 修改用户登录状态
+            userStore.userInfo.isLogin = true
+            userStore.userInfo.userName = userinfo.useraccount
+            // 跳转到主页
             router.replace('/pqa')
         }
         else {
@@ -68,40 +74,6 @@ const Login = async () => {
         showToast(err)
     }
 }
-
-// 封装函数，由于在userinfo中直接修改内部变量失效才移动到此
-// const Login_wrap = async (userAccount, userPassword) => {
-//     // 用户登录信息参数构造
-//     const userinfotosend = {
-//         "userAccount": userAccount,
-//         "userPassword": userPassword
-//     }
-//     let res;
-//     try {
-//         // 发出登录请求
-//         res = await UserControllerService.userLoginUsingPost(userinfotosend)
-//         if (res.code == 0) {
-//             // 提示登录成功
-//             // 修改后台用户信息
-//             UserInfoStore.userinfo.id = res.data.id;
-//             UserInfoStore.userinfo.userAccount = userAccount;
-//             UserInfoStore.userinfo.userAvatar = res.data.userAvatar;
-//             UserInfoStore.userinfo.userName = res.data.userName;
-//             return;
-//         } else {
-//             // 使用toast轻提示打印message
-//             throw ('jump')
-//         }
-//     }
-//     catch (err) {
-//         if (err == 'jump') {
-//             throw ('登录失败！' + res.message)
-//         }
-//         else {
-//             throw ('登录失败！服务器或网络问题' + err)
-//         }
-//     }
-// }
 
 </script>
 

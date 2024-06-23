@@ -9,6 +9,9 @@ import PictureMergeView from '@/views/subviews/PictureMergeView.vue'
 import PicturePropEditView from '@/views/subviews/PicturePropEditView.vue'
 import LoginView from '@/views/LoginView.vue'
 import RegisterView from '@/views/RegisterView.vue'
+import PictureBlack2Color from '@/views/subviews/PictureBlack2Color.vue'
+import PictureClearer from '@/views/subviews/PictureClearer.vue'
+import PictureRemoveFog from '@/views/subviews/PictureRemoveFog.vue'
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -16,12 +19,12 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      redirect: 'pqa'
+      redirect: 'login'
     },
     {
-      path:'/pqa',
+      path: '/pqa',
       name: 'pqa',
-      component:PictureQAView
+      component: PictureQAView
     },
     {
       path: '/pgen',
@@ -36,7 +39,25 @@ const router = createRouter({
     {
       path: '/vgen',
       name: 'vgen',
-      component: VideoGenerateView
+      component: VideoGenerateView,
+      redirect: 'vgen/color',
+      children: [
+        {
+          path: 'color',
+          name: 'color',
+          component: PictureBlack2Color
+        },
+        {
+          path: 'clear',
+          name: 'clear',
+          component: PictureClearer
+        },
+        {
+          path: 'remove',
+          name: 'remove',
+          component: PictureRemoveFog
+        }
+      ]
     },
     {
       path: '/pb',
