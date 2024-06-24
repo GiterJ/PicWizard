@@ -1,5 +1,5 @@
 <template>
-    <van-tabs v-model:active="counterStore.activeCounts.sideBar" animated="true" swipeable="true" style="--van-tab-font-size:13px">
+    <van-tabs v-model:active="counterStore.activeCounts.sideBar" :animated="true" :swipeable="true" style="--van-tab-font-size:13px">
         <van-tab v-for="(item, index) in titles" :key="index" :title="item.title" :to="item.to" replace>
             <template #title>
                 {{ item.title }}

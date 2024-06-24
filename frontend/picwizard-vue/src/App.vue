@@ -27,4 +27,9 @@ const userStore = useUserStore();
   <RouterView />
 </template>
 
-<style scoped></style>
+<style>
+
+body {
+  font-family: "Source Han Serif SC", "STXihei", "微软雅黑", "宋体", sans-serif !important;
+}
+</style>

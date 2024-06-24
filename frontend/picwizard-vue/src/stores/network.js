@@ -209,6 +209,66 @@ export const useNetworkStore = defineStore("network", () => {
         }
     }
 
+    const pfog = async (image) => {
+        const formData = new FormData();
+        formData.append('image', image)
+        try {
+            const res = await api.post("/picdefog", formData)
+            if(res.status == 200) {
+                return res.data
+            }
+            else {
+                showToast("Error", res.data.msg)
+                return res.data
+            }
+        }catch {
+            return {
+                code: -1,
+                msg: "网络错误"
+            }
+        }
+    }
 
-    return { api, pgen, pqa, pmerge, pfix, pbutify, pedit, pregister, plogin }
+    const pcolor = async (image) => {
+        const formData = new FormData();
+        formData.append('image', image)
+        try {
+            const res = await api.post("/piccolor", formData)
+            if(res.status == 200) {
+                return res.data
+            }
+            else {
+                showToast("Error", res.data.msg)
+                return res.data
+            }
+        }catch {
+            return {
+                code: -1,
+                msg: "网络错误"
+            }
+        }
+    }
+
+    const pclear = async (image) => {
+        const formData = new FormData();
+        formData.append('image', image)
+        try {
+            const res = await api.post("/picclear", formData)
+            if(res.status == 200) {
+                return res.data
+            }
+            else {
+                showToast("Error", res.data.msg)
+                return res.data
+            }
+        }catch {
+            return {
+                code: -1,
+                msg: "网络错误"
+            }
+        }
+    }
+
+
+    return { api, pgen, pqa, pmerge, pfix, pbutify, pedit, pregister, plogin, pfog, pcolor, pclear }
 });
