@@ -152,14 +152,14 @@ const downloadImage = () => {
   // background-color: #F3F3F4;
   padding: 2vw 2px;
 
-  .chatboxs {
+  .chatboxes {
     overflow-y: hidden;
     width: 93vw;
-    height: 40vh;
+    height: 55vh;
     max-height: 40vh;
   }
 
-  .chatboxs::-webkit-scrollbar {
+  .chatboxes::-webkit-scrollbar {
     display: none;
   }
 

@@ -48,14 +48,12 @@ import ChatBox from '@/components/ChatBox.vue';
 import { useNetworkStore } from '@/stores/network';
 import { reactive, ref } from 'vue';
 import { showToast } from 'vant';
-import axios from 'axios';
 import NavBar from '@/components/NavBar.vue';
 
 // 聊天记录
 const chatHistory = reactive([
 ])
 
-// TODO 补充上传处理函数 base64编码
 const afterRead = () => {
     // TODO 可以添加一个指示逻辑，表示上传成功
 
@@ -101,13 +99,6 @@ const sendMessage = async () => {
 // 接受到的图片
 const picture = ref([])
 
-// test connection
-const test = () => {
-    axios.get("/api/testforlogin").then(res => {
-        console.log(res)
-    })
-}
-
 </script>
 
 <style scoped lang="less">
@@ -146,17 +137,15 @@ const test = () => {
         // background-color: #F3F3F4;
         padding: 2vw 2px;
 
-        .chatboxs {
-            overflow-y: hidden;
+        .chatboxes {
+            overflow-y: auto;
             width: 93vw;
-            height: 40vh;
-            max-height: 40vh;
+            height: 55vh;
         }
 
-        .chatboxs::-webkit-scrollbar {
+        .chatboxes::-webkit-scrollbar {
             display: none;
         }
-
 
         .typein {
             position: absolute;
