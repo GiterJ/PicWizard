@@ -42,7 +42,6 @@ const userinfo = reactive({
     checkpassword: ""
 })
 
-// TODO 对接后端，完成注册
 // 注册函数
 const Register = async () => {
     try {

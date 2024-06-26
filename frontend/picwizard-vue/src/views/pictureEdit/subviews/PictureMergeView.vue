@@ -22,7 +22,6 @@
     </div>
 
     <div class="result">
-      <!-- TODO 补全照片展示框 -->
       <img :src="genPicture" class="img">
     </div>
 

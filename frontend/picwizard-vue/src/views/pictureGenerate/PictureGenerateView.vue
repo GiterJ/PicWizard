@@ -9,7 +9,16 @@
       &nbsp;生成图片：
     </div>
     <div class="uploader">
-      <van-uploader disabled v-model="pictures" :after-read="afterRead" :max-count="1" preview-size="12vh" />
+      <van-image width="100" height="100" :class="picture" round @click="showPreview">
+        <template v-slot:loading>
+          <van-loading type="spinner" size="20" color="rgba(84, 115, 232, 0.5)" />
+        </template>
+      </van-image>
+      <van-overlay :show="show" @click="show = false">
+        <div style="line-height: 100vh;">
+          <img :src="picture" alt="" width="100%">
+        </div>
+      </van-overlay>
     </div>
   </div>
   <!-- 聊天框 -->
@@ -23,13 +32,17 @@
     <!-- 输入框 -->
     <div class="typein">
       <van-cell-group inset>
-        <van-field v-model="sms" left clearable label="" style="border:2px solid black;border-radius: 25px;">
+        <van-field v-model="sms" left clearable label="" style="border:2px solid black; border-radius: 25px;">
         </van-field>
       </van-cell-group>
     </div>
-    <div class="button">
+    <div class="button1">
       <van-button size="small" round type="primary" @click="sendMessage">
         <van-icon name="guide-o" size="large" /></van-button>
+    </div>
+    <div class="button2">
+      <van-button size="small" round type="primary" @click="downloadImage">
+        <van-icon name="down" size="large" /></van-button>
     </div>
   </div>
 
@@ -42,32 +55,18 @@ import ChatBox from '@/components/ChatBox.vue';
 import { reactive, ref } from 'vue';
 import { useNetworkStore } from '@/stores/network';
 import NavBar from '@/components/NavBar.vue';
+import { showToast } from 'vant';
 
 // 聊天记录
-// TODO 添加聊天记录
-const chatHistory = reactive([
-  // {
-  //   name: 'user',
-  //   text: '帮我生成一章小猫图片',
-  //   type: 'right'
-  // },
-  // {
-  //   name: 'PicWizard',
-  //   text: '好的，已为您生成',
-  //   type: 'left'
-  // }
-])
+const chatHistory = reactive([])
 
-// TODO 添加接收图片逻辑
-const pictures = ref([
-])
+const picture = ref("")
 
 // 聊天输入消息
 const sms = ref("")
 
-// TODO 发送事件函数
 const sendMessage = async () => {
-  if(sms.value == ""){
+  if (sms.value == "") {
     return
   }
   // 更新输入
@@ -84,18 +83,44 @@ const sendMessage = async () => {
   const res = await netWorkStore.pgen(input)
   if (res.code != -1) {
     // 最多展示两张生成图片
-    if (pictures.value.length < 2) {
-      pictures.value.push({
-        "url": res.msg,
-      })
-    }
-    // 如果大于两张图片，需要删去第一张
-    else {
-      pictures.value[0] = pictures.value[1]
-      pictures.value[1] = { "url": res.data.msg }
-    }
+    picture.value = res.msg
   } else {
     // 错误处理已做
+  }
+}
+
+// 遮罩层逻辑
+const show = ref(false)
+const showPreview = () => {
+  show.value = true
+}
+
+// 根据URL下载图片
+const downloadImage = () => {
+  if (picture.value != "") {
+    let image = new Image();
+    image.setAttribute("crossOrigin", "anonymous");
+    image.src = picture.value;
+    image.onload = () => {
+      let canvas = document.createElement("canvas");
+      canvas.width = image.width;
+      canvas.height = image.height;
+      let ctx = canvas.getContext("2d");
+      ctx.drawImage(image, 0, 0, image.width, image.height);
+      canvas.toBlob(blob => {
+        let url = URL.createObjectURL(blob);
+        let a = document.createElement("a");
+        a.download = "name.jpg";
+        a.href = url;
+        a.click();
+        a.remove();
+        // 用完释放URL对象
+        URL.revokeObjectURL(url);
+      });
+    };
+  }
+  else {
+    showToast("生成图片后才能下载！")
   }
 }
 
@@ -142,16 +167,22 @@ const sendMessage = async () => {
   .typein {
     position: absolute;
     bottom: 1vh;
-    width: 90vw;
+    width: 78vw;
     height: 4vh;
     margin: 0 auto;
     left: 0vw;
   }
 
-  .button {
+  .button1 {
     position: absolute;
     bottom: 0.9vh;
-    right: 2.7vw;
+    right: 14.5vw;
+  }
+
+  .button2 {
+    position: absolute;
+    bottom: 0.9vh;
+    right: 3vw;
   }
 }
 
@@ -164,7 +195,7 @@ const sendMessage = async () => {
 
 :deep(.van-button--small) {
   height: 4.1vh;
-  width: 10.5vw;
+  width: 9.5vw;
   font-size: 12px;
   background: #1989FA;
   border: 0;

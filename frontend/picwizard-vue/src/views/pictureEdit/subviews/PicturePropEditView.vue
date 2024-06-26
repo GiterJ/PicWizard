@@ -15,7 +15,7 @@
         </div>
       </div>
     </div>
-    
+
     <!-- 功能选择 -->
     <div class="text3">
       <van-icon name="circle" color="rgba(84, 115, 232, 0.3)" />&nbsp;功能选择
@@ -119,7 +119,7 @@ const onSend = async () => {
     align-items: center;
 
     .img-demo {
-      background-image: url("E:\SE-project\PicWizard\frontend\picwizard-vue\src\assets\images.jpg");
+      background-image: url("../../../assets/images.jpg");
       background-repeat: no-repeat;
       background-size: cover;
       width: 35vw;

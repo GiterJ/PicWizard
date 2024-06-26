@@ -88,7 +88,7 @@ const afterReadFunc = (file) => {
     align-items: center;
 
     .img-demo {
-      background-image: url("E:\SE-project\PicWizard\frontend\picwizard-vue\src\assets\images.jpg");
+      background-image: url("../../../assets/demo_black.jpg");
       background-repeat: no-repeat;
       background-size: cover;
       width: 35vw;

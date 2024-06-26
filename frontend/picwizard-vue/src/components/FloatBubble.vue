@@ -4,7 +4,7 @@
             box-shadow: 0px 0px 20px 0px #5473e8;" />
     <van-floating-bubble v-else icon="down" @click="onDownloadButNotgen" v-model:offset="offset" 
     class="bubble-button" style="--van-floating-bubble-background:gray;--van-floating-bubble-size:50px;
-            box-shadow: 0px 0px 20px 0px #5473e8;" />
+            box-shadow: 0px 0px 20px 0px gray;" />
 </template>
 
 <script setup>

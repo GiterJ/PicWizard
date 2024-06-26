@@ -88,7 +88,7 @@ const onSend = async () => {
     align-items: center;
 
     .img-demo {
-      background-image: url("E:\SE-project\PicWizard\frontend\picwizard-vue\src\assets\images.jpg");
+      background-image: url("../../../assets/images.jpg");
       background-repeat: no-repeat;
       background-size: cover;
       width: 35vw;

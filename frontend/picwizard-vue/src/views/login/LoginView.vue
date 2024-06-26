@@ -1,5 +1,4 @@
 <!-- 登录页面 -->
-<!-- TODO 对接后端，完成自动登录，加入router guarden -->
 <template>
     <div class="login">
         <!-- 软件图标 -->
@@ -51,7 +50,6 @@ const userinfo = reactive({
     password: ""
 })
 
-// TODO 对接后端，完成登录函数
 // 登录函数
 const Login = async () => {
     try {
