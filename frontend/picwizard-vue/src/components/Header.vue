@@ -46,6 +46,7 @@ const exitLogin = () => {
   width: 100%;
   line-height: 100%;
   text-align: center;
+  overflow-y: hidden;
   
   .icon {
     margin-top: 15%;

@@ -21,10 +21,6 @@ const userStore = useUserStore();
 //   }
 // })
 
-// TODO 修复active数字 bug
-// TODO 解决pinia刷新后丢失登录数据问题
-// TODO 解决图片展示不能平铺的问题
-
 </script>
 
 <template>
