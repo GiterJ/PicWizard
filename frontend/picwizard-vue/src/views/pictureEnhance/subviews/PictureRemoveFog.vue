@@ -13,7 +13,7 @@
         </div>
       </div>
     </div>
-
+    
     <!-- 文字说明2 -->
     <div class="text2">
       <van-icon name="circle" color="rgba(84, 115, 232, 0.3)" />&nbsp;去雾结果
@@ -27,10 +27,11 @@
       <van-button type="primary" plain round icon="arrow-up" block @click="onSend">开始去雾</van-button>
     </div>
   </div>
+
+  <FloatBubble v-model:genPicture="genPicture"/>
 </template>
 
 <script setup>
-
 import FileUploader from '@/components/FileUploader.vue';
 import { useNetworkStore } from '@/stores/network';
 import { showToast } from 'vant';

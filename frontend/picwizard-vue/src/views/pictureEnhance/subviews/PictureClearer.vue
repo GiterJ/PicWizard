@@ -27,14 +27,12 @@
       <van-button type="primary" plain round icon="arrow-up" block @click="onSend">开始增强</van-button>
     </div>
   </div>
+
+  <FloatBubble v-model:genPicture="genPicture"/>
+
 </template>
 
 <script setup>
-
-// TODO 
-// 补充 genPicture变量、onSend函数和afterReadFunc函数
-// 补充下载函数
-
 import FileUploader from '@/components/FileUploader.vue';
 import { useNetworkStore } from '@/stores/network';
 import { showToast } from 'vant';

@@ -29,6 +29,8 @@
     </div>
   </div>
 
+  <FloatBubble v-model:genPicture="genPicture"/>
+
   <NavBar />
 
 </template>
@@ -46,7 +48,6 @@ const afterReadFunc = (file)=>{
   userPicture.value = file.content.slice('data:image/jpeg;base64,'.length)
 }
 
-// TODO 完成发送逻辑
 const genPicture = ref("")
 const onSend = async () => {
   // 用户必须先上传图片

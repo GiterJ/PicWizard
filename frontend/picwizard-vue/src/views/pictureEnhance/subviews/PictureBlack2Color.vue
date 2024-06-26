@@ -27,6 +27,9 @@
       <van-button type="primary" plain round icon="arrow-up" block @click="onSend">开始上色</van-button>
     </div>
   </div>
+
+  <FloatBubble v-model:genPicture="genPicture"/>
+
 </template>
 
 <script setup>

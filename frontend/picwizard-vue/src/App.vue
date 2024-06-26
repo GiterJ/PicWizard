@@ -21,6 +21,9 @@ const userStore = useUserStore();
 //   }
 // })
 
+// TODO 修复active数字 bug
+// TODO 解决pinia刷新后丢失登录数据问题
+
 </script>
 
 <template>
@@ -28,7 +31,6 @@ const userStore = useUserStore();
 </template>
 
 <style>
-
 body {
   font-family: "Source Han Serif SC", "STXihei", "微软雅黑", "宋体", sans-serif !important;
 }

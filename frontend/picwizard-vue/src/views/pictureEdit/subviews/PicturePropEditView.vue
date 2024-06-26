@@ -15,7 +15,7 @@
         </div>
       </div>
     </div>
-
+    
     <!-- 功能选择 -->
     <div class="text3">
       <van-icon name="circle" color="rgba(84, 115, 232, 0.3)" />&nbsp;功能选择
@@ -42,6 +42,7 @@
       <van-button type="primary" plain round icon="arrow-up" block @click="onSend">开始处理</van-button>
     </div>
   </div>
+  <FloatBubble v-model:genPicture="genPicture"/>
   <NavBar />
 </template>
 
@@ -52,6 +53,7 @@ import { useNetworkStore } from '@/stores/network';
 import { showToast } from 'vant';
 import { ref } from 'vue';
 import NavBar from '@/components/NavBar.vue';
+import FloatBubble from '@/components/FloatBubble.vue';
 
 // 选择框用
 const funcChoose = ref('');
