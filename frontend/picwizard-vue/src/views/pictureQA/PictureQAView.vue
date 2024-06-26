@@ -133,9 +133,9 @@ const test = () => {
             font-weight: bold;
         }
 
-        .uploader {
+        // .uploader {
             
-        }
+        // }
     }
 
     .chat {

@@ -1,17 +1,17 @@
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
-import PictureQAView from '@/views/PictureQAView.vue'
-import PictureGenerateView from '@/views/PictureGenerateView.vue'
-import VideoGenerateView from '@/views/VideoGenerateView.vue'
-import PictureEditView from '@/views/PictureEditView.vue'
-import PictureButifyView from '@/views/subviews/PictureButifyView.vue'
-import PictureFixView from '@/views/subviews/PictureFixView.vue'
-import PictureMergeView from '@/views/subviews/PictureMergeView.vue'
-import PicturePropEditView from '@/views/subviews/PicturePropEditView.vue'
-import LoginView from '@/views/LoginView.vue'
-import RegisterView from '@/views/RegisterView.vue'
-import PictureBlack2Color from '@/views/subviews/PictureBlack2Color.vue'
-import PictureClearer from '@/views/subviews/PictureClearer.vue'
-import PictureRemoveFog from '@/views/subviews/PictureRemoveFog.vue'
+import PictureQAView from '@/views/pictureQA/PictureQAView.vue'
+import PictureGenerateView from '@/views/pictureGenerate/PictureGenerateView.vue'
+import PictureEnhanceView from '@/views/pictureEnhance/PictureEnhanceView.vue'
+import PictureEditView from '@/views/pictureEdit/PictureEditView.vue'
+import PictureButifyView from '@/views/pictureEdit/subviews/PictureButifyView.vue'
+import PictureAnimateView from '@/views/pictureEdit/subviews/PictureAnimateView.vue'
+import PictureMergeView from '@/views/pictureEdit/subviews/PictureMergeView.vue'
+import PicturePropEditView from '@/views/pictureEdit/subviews/PicturePropEditView.vue'
+import LoginView from '@/views/login/LoginView.vue'
+import RegisterView from '@/views/login/RegisterView.vue'
+import PictureBlack2Color from '@/views/pictureEnhance/subviews/PictureBlack2Color.vue'
+import PictureClearer from '@/views/pictureEnhance/subviews/PictureClearer.vue'
+import PictureRemoveFog from '@/views/pictureEnhance/subviews/PictureRemoveFog.vue'
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -39,7 +39,7 @@ const router = createRouter({
     {
       path: '/vgen',
       name: 'vgen',
-      component: VideoGenerateView,
+      component: PictureEnhanceView,
       redirect: 'vgen/color',
       children: [
         {
@@ -67,7 +67,7 @@ const router = createRouter({
     {
       path: '/pf',
       name: 'pf',
-      component: PictureFixView
+      component: PictureAnimateView
     },
     {
       path: '/pm',
