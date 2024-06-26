@@ -1,5 +1,3 @@
-<!-- FIXME 修复聊天框无限扩大的问题 -->
-
 <template>
   <Header title="图片生成"></Header>
   <!-- 图片生成框 -->
@@ -40,8 +38,13 @@
       <van-button size="small" round type="primary" @click="sendMessage">
         <van-icon name="guide-o" size="large" /></van-button>
     </div>
-    <div class="button2">
+
+    <div v-if="picture != ''" class="button2">
       <van-button size="small" round type="primary" @click="downloadImage">
+        <van-icon name="down" size="large" /></van-button>
+    </div>
+    <div v-else class="button2">
+      <van-button size="small" round type="primary" @click="downloadImage" color="gray">
         <van-icon name="down" size="large" /></van-button>
     </div>
   </div>
@@ -123,6 +126,7 @@ const downloadImage = () => {
     showToast("生成图片后才能下载！")
   }
 }
+
 
 </script>
 

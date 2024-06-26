@@ -126,6 +126,7 @@ const onSend = async () => {
     .img {
       width: 100%;
       height: auto;
+      margin: 0 auto;
     }
   }
 }

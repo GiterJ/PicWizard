@@ -122,6 +122,7 @@ const afterReadTarget = (file) => {
     .img {
       width: 100%;
       height: auto;
+      margin: 0 auto;
     }
   }
 

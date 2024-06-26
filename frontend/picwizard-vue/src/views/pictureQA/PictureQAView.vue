@@ -1,5 +1,3 @@
-<!-- FIXME 修复聊天框无限扩大的问题 -->
-
 <template>
     <Header title="图片问答"></Header>
     <!-- <div class="testbutton" @click="test"></div> -->
@@ -56,7 +54,6 @@ const chatHistory = reactive([
 
 const afterRead = () => {
     // TODO 可以添加一个指示逻辑，表示上传成功
-
 }
 
 // 输入框消息文字

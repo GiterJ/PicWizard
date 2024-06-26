@@ -125,6 +125,7 @@ const afterReadFunc = (file) => {
 
     .img {
       width: 100%;
+      margin: 0 auto;
       height: auto;
     }
   }
