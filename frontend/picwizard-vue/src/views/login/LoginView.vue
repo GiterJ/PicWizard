@@ -3,7 +3,7 @@
     <div class="login">
         <!-- 软件图标 -->
         <div class="img">
-            <img src="../assets/logo.png">
+            <img src="../../assets/logo.png">
             <span>PicWizard</span>
         </div>
 
