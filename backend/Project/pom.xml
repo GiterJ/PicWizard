@@ -8,6 +8,7 @@
         <version>3.3.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+    <packaging>jar</packaging>
     <groupId>com.hit</groupId>
     <artifactId>Project</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -66,6 +67,7 @@
 <!--            <groupId>org.springframework.boot</groupId>-->
 <!--            <artifactId>spring-boot-starter-security</artifactId>-->
 <!--        </dependency>-->
+        <!-- Spring Security -->
 
 
     </dependencies>
