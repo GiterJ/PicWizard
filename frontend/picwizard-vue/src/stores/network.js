@@ -13,7 +13,7 @@ export const useNetworkStore = defineStore("network", () => {
             'Content-Type': 'multipart/form-data'
         }
     });
-
+    
     /**
      * 获取问答结果
      * @param {输入图片} image 

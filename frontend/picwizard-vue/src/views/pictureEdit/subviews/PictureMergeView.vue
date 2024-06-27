@@ -15,7 +15,7 @@
         <van-uploader :after-read="afterReadTarget" preview-size="30vw" :max-count="1" v-model="vmodelPicture2" />
       </div>
     </div>
-
+    
     <!-- 文字提示框2 -->
     <div class="text2">
       <van-icon name="circle" color="rgba(84, 115, 232, 0.3)" />&nbsp;图片输出
