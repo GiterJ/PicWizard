@@ -12,6 +12,7 @@ import RegisterView from '@/views/login/RegisterView.vue'
 import PictureBlack2Color from '@/views/pictureEnhance/subviews/PictureBlack2Color.vue'
 import PictureClearer from '@/views/pictureEnhance/subviews/PictureClearer.vue'
 import PictureRemoveFog from '@/views/pictureEnhance/subviews/PictureRemoveFog.vue'
+import PictureSavedView from '@/views/pictureSaved/PictureSavedView.vue'
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -88,6 +89,11 @@ const router = createRouter({
       path: '/register',
       name: 'register',
       component: RegisterView
+    },
+    {
+      path: '/psaved',
+      name: 'psaved',
+      component: PictureSavedView
     }
   ]
 })
