@@ -170,7 +170,7 @@ export const useNetworkStore = defineStore("network", () => {
             }
         }
     }
-
+    
     const pregister = async (name, password) => {
         const formData = new FormData();
         formData.append('name', name);
