@@ -87,7 +87,7 @@ const afterReadFunc = (file) => {
     align-items: center;
 
     .img-demo {
-      background-image: url("../../../assets/demo_fog.png");
+      background-image: url("../../../assets/demo_fog.jpg");
       background-repeat: no-repeat;
       background-size: cover;
       width: 35vw;
