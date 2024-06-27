@@ -29,6 +29,7 @@ public class UserController {
     public List<User> findAll(){
         return userDao.selectAll();
     }
+    //实现了登录功能
     @PostMapping("/login")
     public JSONUtil login(@RequestParam("name")String name,@RequestParam("password")String password) {
         return loginService.login(name, password);
