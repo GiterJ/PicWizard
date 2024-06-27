@@ -41,6 +41,7 @@ import { useNetworkStore } from '@/stores/network';
 import { showToast } from 'vant';
 import NavBar from '@/components/NavBar.vue';
 import { ref } from 'vue';
+import FloatBubble from '@/components/FloatBubble.vue';
 import 'vant/es/toast/style'
 
 // 用户上传的图片
@@ -67,32 +68,6 @@ const onSend = async () => {
 const afterReadFunc = (file) => {
   userPicture.value = file.content.slice('data:image/jpeg;base64,'.length)
   // userPicture.value = file.content
-}
-
-// 气泡位置
-const offset = ref({ y: 550 })
-// 下载函数
-const onDownload = () => {
-  var base64 = userPicture.value; // imgSrc 就是base64哈
-  var byteCharacters = atob(
-    base64.replace(/^data:image\/(png|jpeg|jpg);base64,/, "")
-  );
-  var byteNumbers = new Array(byteCharacters.length);
-  for (var i = 0; i < byteCharacters.length; i++) {
-    byteNumbers[i] = byteCharacters.charCodeAt(i);
-  }
-  var byteArray = new Uint8Array(byteNumbers);
-  var blob = new Blob([byteArray], {
-    type: undefined,
-  });
-  var aLink = document.createElement("a");
-  aLink.download = "image.jpg"; //这里写保存时的图片名称
-  aLink.href = URL.createObjectURL(blob);
-  aLink.click();
-}
-
-const onDownloadButNotgen = () => {
-  showToast("请先上传图片")
 }
 
 </script>
@@ -149,6 +124,7 @@ const onDownloadButNotgen = () => {
     height: 40vh;
     border: 8px solid RGBA(203, 213, 248, 0.5);
     display: flex;
+    justify-content: center;
     margin: 0 auto;
 
     .img {

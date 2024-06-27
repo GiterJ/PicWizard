@@ -22,7 +22,7 @@
     </div>
 
     <div class="result">
-      <img :src="genPicture" class="img">
+      <img :src="genPicture" alt="" class="img">
     </div>
 
     <div class="button">
@@ -118,6 +118,7 @@ const afterReadTarget = (file) => {
     height: 40vh;
     border: 8px solid RGBA(203, 213, 248, 0.5);
     display: flex;
+    justify-content: center;
 
     .img {
       width: 100%;

@@ -17,7 +17,6 @@ const props = defineProps(['genPicture'])
 const offset = ref({ y: 550 })
 // 下载函数
 const onDownload = () => {
-    console.log(props.genPicture);
     var base64 = props.genPicture; // imgSrc 就是base64
     var byteCharacters = atob(
         base64.replace(/^data:image\/(png|jpeg|jpg);base64,/, "")

@@ -20,7 +20,7 @@
     </div>
     <!-- 展示框 -->
     <div class="show">
-      <img :src="genPicture" alt="">
+      <img :src="genPicture" alt="" class="img">
     </div>
 
     <div class="button">
@@ -28,7 +28,7 @@
     </div>
   </div>
 
-  <FloatBubble v-model:genPicture="genPicture"/>
+  <FloatBubble v-model:genPicture="genPicture" />
 
 </template>
 
@@ -124,9 +124,12 @@ const afterReadFunc = (file) => {
     margin: 0 auto;
 
     .img {
+      display: block;
       width: 100%;
-      margin: 0 auto;
       height: auto;
+      max-width: 100%;
+      max-height: 100%;
+      margin: 0 auto;
     }
   }
 }

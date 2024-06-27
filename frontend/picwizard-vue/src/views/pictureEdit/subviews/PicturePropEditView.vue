@@ -15,7 +15,7 @@
         </div>
       </div>
     </div>
-
+    
     <!-- 功能选择 -->
     <div class="text3">
       <van-icon name="circle" color="rgba(84, 115, 232, 0.3)" />&nbsp;功能选择
@@ -34,7 +34,7 @@
 
     <!-- 展示框 -->
     <div class="show">
-      <img :src="genPicture" alt="">
+      <img :src="genPicture" alt="" class="img">
     </div>
 
     <!-- 开始按钮 -->
@@ -160,6 +160,7 @@ const onSend = async () => {
     height: 40vh;
     border: 8px solid RGBA(203, 213, 248, 0.5);
     display: flex;
+    justify-content: center;
     margin: 0 auto;
 
     .img {

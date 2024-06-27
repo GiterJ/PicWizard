@@ -53,7 +53,6 @@ const chatHistory = reactive([
 ])
 
 const afterRead = () => {
-    // TODO 可以添加一个指示逻辑，表示上传成功
 }
 
 // 输入框消息文字

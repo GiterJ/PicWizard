@@ -20,7 +20,7 @@
     </div>
     <!-- 展示框 -->
     <div class="show">
-      <img :src="genPicture" alt="">
+      <img :src="genPicture" alt="" class="img">
     </div>
 
     <div class="button">

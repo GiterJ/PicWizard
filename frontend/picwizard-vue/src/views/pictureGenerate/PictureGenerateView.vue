@@ -99,33 +99,47 @@ const showPreview = () => {
 }
 
 // 根据URL下载图片
+// const downloadImage = () => {
+//   if (picture.value != "") {
+//     let image = new Image();
+//     image.setAttribute("crossOrigin", "anonymous");
+//     image.src = picture.value;
+//     image.onload = () => {
+//       let canvas = document.createElement("canvas");
+//       canvas.width = image.width;
+//       canvas.height = image.height;
+//       let ctx = canvas.getContext("2d");
+//       ctx.drawImage(image, 0, 0, image.width, image.height);
+//       canvas.toBlob(blob => {
+//         let url = URL.createObjectURL(blob);
+//         let a = document.createElement("a");
+//         a.download = "name.jpg";
+//         a.href = url;
+//         a.click();
+//         a.remove();
+//         // 用完释放URL对象
+//         URL.revokeObjectURL(url);
+//       });
+//     };
+//   }
+//   else {
+//     showToast("生成图片后才能下载！")
+//   }
+// }
+
 const downloadImage = () => {
   if (picture.value != "") {
-    let image = new Image();
-    image.setAttribute("crossOrigin", "anonymous");
-    image.src = picture.value;
-    image.onload = () => {
-      let canvas = document.createElement("canvas");
-      canvas.width = image.width;
-      canvas.height = image.height;
-      let ctx = canvas.getContext("2d");
-      ctx.drawImage(image, 0, 0, image.width, image.height);
-      canvas.toBlob(blob => {
-        let url = URL.createObjectURL(blob);
-        let a = document.createElement("a");
-        a.download = "name.jpg";
-        a.href = url;
-        a.click();
-        a.remove();
-        // 用完释放URL对象
-        URL.revokeObjectURL(url);
-      });
-    };
+    var a = document.createElement("a");
+    var event = new MouseEvent("click");
+    a.download = "photo";
+    a.href = picture.value;
+    a.dispatchEvent(event);
   }
   else {
     showToast("生成图片后才能下载！")
   }
 }
+
 
 
 </script>
