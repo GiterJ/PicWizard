@@ -6,5 +6,5 @@ import org.json.JSONException;
 import java.io.IOException;
 
 public interface AttributeEditService {
-    JSONUtil AttributeEdit(String image, String prompt) throws IOException, JSONException;
+    JSONUtil AttributeEdit(String image, String prompt, String name) throws IOException, JSONException;
 }

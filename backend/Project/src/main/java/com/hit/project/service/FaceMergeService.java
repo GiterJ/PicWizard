@@ -6,5 +6,5 @@ import org.json.JSONException;
 import java.io.IOException;
 
 public interface FaceMergeService {
-    JSONUtil faceMerge(String target, String template) throws IOException, JSONException;
+    JSONUtil faceMerge(String target, String template, String name) throws IOException, JSONException;
 }

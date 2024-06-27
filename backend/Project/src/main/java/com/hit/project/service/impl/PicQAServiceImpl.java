@@ -33,8 +33,8 @@ public class PicQAServiceImpl implements PicQAService {
 //            System.out.println("An error occurred while writing to the file.");
 //        }
 
-        String test = getFileContentAsBase64("src/main/resources/PicQATest.jpg",false);
-        System.out.println("[INFO]:传入的参数和正确参数对比结果:"+test.equals(image));
+//        String test = getFileContentAsBase64("src/main/resources/PicQATest.jpg",false);
+//        System.out.println("[INFO]:传入的参数和正确参数对比结果:"+test.equals(image));
 
         //image = getFileContentAsBase64("src/main/resources/PicQATest.jpg",false);
 
@@ -53,13 +53,21 @@ public class PicQAServiceImpl implements PicQAService {
         String res = response.body().string();
         JSONObject jsonObject = new JSONObject(res);
         // 获取result对象
-        JSONObject resultObject = jsonObject.getJSONObject("result");
-        // 获取task_id的值
-        this.taskId = resultObject.getString("task_id");
-        System.out.println("[INFO]:当前处理的任务的id为:"+this.taskId);
+        if (jsonObject.has("result")) {
+            JSONObject resultObject = jsonObject.getJSONObject("result");
+            // 获取task_id的值
+            this.taskId = resultObject.getString("task_id");
+            System.out.println("[INFO]:当前处理的任务的id为:"+this.taskId);
+        } else {
+            this.taskId = "error";
+        }
+
     }
     @Override
     public JSONUtil getResponse() throws IOException, JSONException, InterruptedException {
+        if(this.taskId.equals("error")){
+            return new JSONUtil(-1,"服务器未响应或图片格式不正确");
+        }
         String description;
         int code;
         MediaType mediaType = MediaType.parse("application/json");
@@ -73,25 +81,28 @@ public class PicQAServiceImpl implements PicQAService {
             Response response = HTTP_CLIENT.newCall(request).execute();
             String res = response.body().string();
             JSONObject jsonObject = new JSONObject(res);
-            JSONObject resultObject = jsonObject.getJSONObject("result");
-            if(resultObject.getString("ret_msg").equals("processing")){
-                System.out.println("[INFO]:processing...");
-                sleep(5000);
-            }
-            else if (resultObject.getString("ret_msg").equals("success")){
-                code = 200;
-                System.out.println("[INFO]:success");
-                description = resultObject.getString("description");
-                System.out.println("[INFO]:图片描述:"+description);
-                break;
-            }
-            else{
+            if (jsonObject.has("result")) {
+                JSONObject resultObject = jsonObject.getJSONObject("result");
+                if (resultObject.has("ret_msg")) {
+                    if (resultObject.getString("ret_msg").equals("success")){
+                        code = 200;
+                        System.out.println("[INFO]:success");
+                        description = resultObject.getString("description");
+                        System.out.println("[INFO]:图片描述:"+description);
+                        break;
+                    } else if (resultObject.getString("ret_msg").equals("processing")){
+                        System.out.println("[INFO]:processing...");
+                        sleep(5000);
+                    }
+                }
+            } else {
+                System.out.println("[INFO]:服务器未响应或者图片格式错误");
                 code = -1;
                 description = "服务器未响应";
+                break;
             }
         }
-        JSONUtil jsonUtil = new JSONUtil(code,description);
-        return jsonUtil;
+        return new JSONUtil(code,description);
     }
     public static void main(String[] args) throws JSONException, IOException, InterruptedException {
         //PicQAServiceImpl picQAService = new PicQAServiceImpl();
