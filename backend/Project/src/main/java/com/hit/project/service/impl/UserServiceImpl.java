@@ -40,6 +40,7 @@ public class UserServiceImpl implements UserService {
                 return new JSONUtil(-1, "用户名重复");
             }
         }
+        //实现了密码加密
         String encryptedPassword = encryptPassword(password);
         userDao.insert(new User(name,encryptedPassword));
         System.out.println("[INFO]:注册成功");
