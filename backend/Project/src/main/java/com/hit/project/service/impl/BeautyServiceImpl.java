@@ -1,7 +1,10 @@
 package com.hit.project.service.impl;
 
+import com.hit.project.entity.Picture;
+import com.hit.project.mapper.PictureDao;
 import com.hit.project.service.BeautyService;
 import com.hit.project.utils.JSONUtil;
+import jakarta.annotation.Resource;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,13 +13,16 @@ import org.springframework.stereotype.Service;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.LocalDateTime;
 
 import static com.hit.project.utils.BaiduUtil.getFileContentAsBase64;
 
 @Service
 public class BeautyServiceImpl implements BeautyService {
+    @Resource
+    private PictureDao pictureDao;
     @Override
-    public JSONUtil beauty(String image) throws JSONException {
+    public JSONUtil beauty(String image, String name) throws JSONException {
         OutputStreamWriter out = null;
         BufferedReader in = null;
         StringBuilder result = new StringBuilder();
@@ -71,6 +77,7 @@ public class BeautyServiceImpl implements BeautyService {
             JSONArray mediaInfoList  = jsonObject.getJSONArray("media_info_list");
             JSONObject mediaDataObject = mediaInfoList .getJSONObject(0);
             String mediaData = mediaDataObject.getString("media_data");
+            pictureDao.insert(new Picture(name, LocalDateTime.now(),"AI美颜",mediaData));
             return new JSONUtil(200,mediaData);
         } else {
             System.out.println("[INFO]:服务器未响应或者图片格式错误");

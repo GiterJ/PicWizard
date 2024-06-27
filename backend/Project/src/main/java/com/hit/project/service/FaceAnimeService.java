@@ -6,5 +6,5 @@ import org.json.JSONException;
 import java.io.IOException;
 
 public interface FaceAnimeService {
-    JSONUtil faceAnime(String image) throws IOException, JSONException;
+    JSONUtil faceAnime(String image, String name) throws IOException, JSONException;
 }

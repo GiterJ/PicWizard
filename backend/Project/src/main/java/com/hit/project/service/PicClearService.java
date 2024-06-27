@@ -6,5 +6,5 @@ import org.json.JSONException;
 import java.io.IOException;
 
 public interface PicClearService {
-    public JSONUtil picClear(String image) throws IOException, JSONException;
+    public JSONUtil picClear(String image, String name) throws IOException, JSONException;
 }

@@ -4,5 +4,5 @@ import com.hit.project.utils.JSONUtil;
 import org.json.JSONException;
 
 public interface BeautyService {
-    JSONUtil beauty(String image) throws JSONException;
+    JSONUtil beauty(String image, String name) throws JSONException;
 }

@@ -1,28 +1,23 @@
 package com.hit.project.service.impl;
 
+import com.hit.project.mapper.PictureDao;
 import com.hit.project.service.PicDefogService;
 import com.hit.project.utils.JSONUtil;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import jakarta.annotation.Resource;
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 import java.io.IOException;
-import java.net.URLEncoder;
-import java.util.Base64;
-import static com.hit.project.utils.BaiduUtil.getAccessToken;
 
 @Service
 public class PicDefogServiceImpl implements PicDefogService {
+    @Resource
+    private PictureDao pictureDao;
 //    public static final String API_KEY = "mtWpzs7n33HQ0KEWdrdhZs7W";
 //    public static final String SECRET_KEY = "hx5dn8SWP38kNKGIig3YRopTiPzD3zZB";
 //
 //    static final OkHttpClient HTTP_CLIENT = new OkHttpClient().newBuilder().build();
     @Override
-    public JSONUtil picDefog(String image) throws IOException, JSONException {
+    public JSONUtil picDefog(String image, String name) throws IOException, JSONException {
 //        byte[] decodedImage = Base64.getDecoder().decode(image);
 //        String base64Image = Base64.getEncoder().encodeToString(decodedImage);
 //        image = URLEncoder.encode(base64Image, "utf-8");
@@ -45,6 +40,6 @@ public class PicDefogServiceImpl implements PicDefogService {
 //        }
 //        return new JSONUtil(200,jsonObject.getString("image"));
         SinglePicServiceImpl picDefog = new SinglePicServiceImpl();
-        return picDefog.singlePicOp(image, "https://aip.baidubce.com/rest/2.0/image-process/v1/dehaze?access_token=", "图像去雾");
+        return picDefog.singlePicOp(image, "https://aip.baidubce.com/rest/2.0/image-process/v1/dehaze?access_token=", "图像去雾", name, pictureDao);
     }
 }

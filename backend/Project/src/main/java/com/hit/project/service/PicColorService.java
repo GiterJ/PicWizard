@@ -7,5 +7,5 @@ import java.io.IOException;
 
 public interface PicColorService {
 
-    JSONUtil picColor(String image) throws IOException, JSONException;
+    JSONUtil picColor(String image, String name) throws IOException, JSONException;
 }

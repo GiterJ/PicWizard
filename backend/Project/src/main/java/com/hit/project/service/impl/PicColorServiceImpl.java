@@ -1,23 +1,23 @@
 package com.hit.project.service.impl;
 
+import com.hit.project.mapper.PictureDao;
 import com.hit.project.service.PicColorService;
 import com.hit.project.utils.JSONUtil;
-import okhttp3.*;
+import jakarta.annotation.Resource;
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 import java.io.*;
-import java.util.Base64;
-import java.net.URLEncoder;
-import static com.hit.project.utils.BaiduUtil.getAccessToken;
+
 @Service
 public class PicColorServiceImpl implements PicColorService {
+    @Resource
+    private PictureDao pictureDao;
 //    public static final String API_KEY = "mtWpzs7n33HQ0KEWdrdhZs7W";
 //    public static final String SECRET_KEY = "hx5dn8SWP38kNKGIig3YRopTiPzD3zZB";
 //
 //    static final OkHttpClient HTTP_CLIENT = new OkHttpClient().newBuilder().build();
     @Override
-    public JSONUtil picColor(String image) throws IOException, JSONException {
+    public JSONUtil picColor(String image, String name) throws IOException, JSONException {
 //        byte[] decodedImage = Base64.getDecoder().decode(image);
 //        String base64Image = Base64.getEncoder().encodeToString(decodedImage);
 //        image = URLEncoder.encode(base64Image, "utf-8");
@@ -40,6 +40,6 @@ public class PicColorServiceImpl implements PicColorService {
 //        }
 //        return new JSONUtil(200,jsonObject.getString("image"));
         SinglePicServiceImpl picColor = new SinglePicServiceImpl();
-        return picColor.singlePicOp(image, "https://aip.baidubce.com/rest/2.0/image-process/v1/colourize?access_token=", "黑白图像上色");
+        return picColor.singlePicOp(image, "https://aip.baidubce.com/rest/2.0/image-process/v1/colourize?access_token=", "黑白图像上色", name, pictureDao);
     }
 }

@@ -1,7 +1,10 @@
 package com.hit.project.service.impl;
 
+import com.hit.project.entity.Picture;
+import com.hit.project.mapper.PictureDao;
 import com.hit.project.service.AttributeEditService;
 import com.hit.project.utils.JSONUtil;
+import jakarta.annotation.Resource;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import org.json.JSONException;
@@ -10,19 +13,22 @@ import org.springframework.stereotype.Service;
 import okhttp3.*;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 import static com.hit.project.utils.BaiduUtil.getAccessToken;
-import static com.hit.project.utils.BaiduUtil.getFileContentAsBase64;
 
 
 @Service
 public class AttributeEditServiceImpl implements AttributeEditService {
+    @Resource
+    private PictureDao pictureDao;
     public static final String API_KEY = "GqiC3sGRmSBCzmUATeWk2nxq";
     public static final String SECRET_KEY = "0snn0ajGDdjCCXmcztONXwm3KnKUALnl";
 
     static final OkHttpClient HTTP_CLIENT = new OkHttpClient().newBuilder().build();
     @Override
-    public JSONUtil AttributeEdit(String image,String prompt) throws IOException, JSONException {
+    public JSONUtil AttributeEdit(String image, String prompt, String name) throws IOException, JSONException {
+
         MediaType mediaType = MediaType.parse("application/json");
         RequestBody body = RequestBody.create(mediaType, "{\"image\":\""+image+"\",\"image_type\":\"BASE64\",\"action_type\":\""+prompt+"\",\"quality_control\":\"NONE\"}");
         Request request = new Request.Builder()
@@ -44,6 +50,8 @@ public class AttributeEditServiceImpl implements AttributeEditService {
             System.out.println("[INFO]:服务器未响应或者图片格式错误");
             imageEdit = jsonObject.getString("error_msg");
         }
+        //将图片加入数据库
+        pictureDao.insert(new Picture(name, LocalDateTime.now(),"属性编辑",imageEdit));
         return new JSONUtil(code,imageEdit);
     }
 

@@ -1,26 +1,24 @@
 package com.hit.project.service.impl;
 
+import com.hit.project.mapper.PictureDao;
 import com.hit.project.service.FaceAnimeService;
 import com.hit.project.utils.JSONUtil;
-import okhttp3.*;
+import jakarta.annotation.Resource;
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
-import java.net.URLEncoder;
-import java.util.Base64;
 
-import static com.hit.project.utils.BaiduUtil.getAccessToken;
-import static com.hit.project.utils.BaiduUtil.getFileContentAsBase64;
 @Service
 public class FaceAnimeServiceImpl implements FaceAnimeService {
+    @Resource
+    private PictureDao pictureDao;
 //    public static final String API_KEY = "mtWpzs7n33HQ0KEWdrdhZs7W";
 //    public static final String SECRET_KEY = "hx5dn8SWP38kNKGIig3YRopTiPzD3zZB";
 //
 //    static final OkHttpClient HTTP_CLIENT = new OkHttpClient().newBuilder().build();
     @Override
-    public JSONUtil faceAnime(String image) throws IOException, JSONException {
+    public JSONUtil faceAnime(String image, String name) throws IOException, JSONException {
 //        byte[] decodedImage = Base64.getDecoder().decode(image);
 //        String base64Image = Base64.getEncoder().encodeToString(decodedImage);
 //        image = URLEncoder.encode(base64Image, "utf-8");
@@ -43,7 +41,7 @@ public class FaceAnimeServiceImpl implements FaceAnimeService {
 //        }
 //        return new JSONUtil(200,jsonObject.getString("image"));
         SinglePicServiceImpl faceAnime = new SinglePicServiceImpl();
-        return faceAnime.singlePicOp(image, "https://aip.baidubce.com/rest/2.0/image-process/v1/selfie_anime?access_token=", "人脸动漫化");
+        return faceAnime.singlePicOp(image, "https://aip.baidubce.com/rest/2.0/image-process/v1/selfie_anime?access_token=", "人脸动漫化", name, pictureDao);
     }
 
 }

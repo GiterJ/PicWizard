@@ -5,12 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bbaa7101-dccd-4979-bdbb-e1cbba03e3dd" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/configs/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/userdetails/MyUserDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/mapper/PictureDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/ShowPicService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/ShowPicServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/PictureDao.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hit/project/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hit/project/controller/PicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/controller/PicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hit/project/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hit/project/entity/Picture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/entity/Picture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hit/project/service/AttributeEditService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/AttributeEditService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hit/project/service/BeautyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/BeautyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hit/project/service/FaceAnimeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/FaceAnimeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hit/project/service/FaceMergeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/FaceMergeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hit/project/service/PicClearService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/PicClearService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hit/project/service/PicColorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/PicColorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hit/project/service/PicDefogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/PicDefogService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hit/project/service/SinglePicService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/SinglePicService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/AttributeEditServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/AttributeEditServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/BeautyServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/BeautyServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/FaceAnimeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/FaceAnimeServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/FaceMergeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/FaceMergeServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/PicClearServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/PicClearServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/PicColorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/PicColorServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/PicDefogServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/PicDefogServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/SinglePicServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hit/project/service/impl/SinglePicServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,35 +95,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/AA学习用文件夹/java暑期实训/HelloSpringBoot (3)",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Facet",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "http.proxy",
-    "spring.configuration.checksum": "9e727fdd3aec8274f46685441900280d",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/AA学习用文件夹/java暑期实训/HelloSpringBoot (3)&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Facet&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;http.proxy&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;9e727fdd3aec8274f46685441900280d&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\AA学习用文件夹\软件工程\实验\PicWizard\PicWizard\backend\Project\src\main\resources\static" />
@@ -167,7 +185,8 @@
       <workItem from="1719051510775" duration="1766000" />
       <workItem from="1719212579040" duration="307000" />
       <workItem from="1719240425717" duration="1634000" />
-      <workItem from="1719379464154" duration="4751000" />
+      <workItem from="1719379464154" duration="6948000" />
+      <workItem from="1719479272123" duration="5537000" />
     </task>
     <task id="LOCAL-00001" summary="新增了图片生成和图片问答功能">
       <created>1717633618361</created>
@@ -239,7 +258,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719052344285</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="实现了密码加密">
+      <created>1719384395964</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1719384395964</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -257,7 +283,8 @@
     <MESSAGE value="前后端完成对接" />
     <MESSAGE value="完成了第二次迭代" />
     <MESSAGE value="提取了api调用的公共部分" />
-    <option name="LAST_COMMIT_MESSAGE" value="提取了api调用的公共部分" />
+    <MESSAGE value="实现了密码加密" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现了密码加密" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

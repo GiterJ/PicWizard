@@ -1,7 +1,9 @@
 package com.hit.project.controller;
 
+import com.hit.project.entity.Picture;
 import com.hit.project.entity.User;
 import com.hit.project.mapper.UserDao;
+import com.hit.project.service.ShowPicService;
 import com.hit.project.service.UserService;
 import com.hit.project.utils.JSONUtil;
 import jakarta.annotation.Resource;
@@ -21,6 +23,8 @@ public class UserController {
     private UserDao userDao;
     @Autowired
     private UserService loginService;
+    @Autowired
+    private ShowPicService showPicService;
     @RequestMapping("/testforlogin")
     public List<User> findAll(){
         return userDao.selectAll();
@@ -32,6 +36,11 @@ public class UserController {
     @PostMapping("/regis")
     public JSONUtil regis(@RequestParam("name")String name, @RequestParam("password")String password) {
         return loginService.regis(name,password);
+    }
+
+    @PostMapping("/showinfo")
+    public List<Picture> showInfo(@RequestParam("name")String name){
+        return showPicService.showInfo(name);
     }
 
 }
