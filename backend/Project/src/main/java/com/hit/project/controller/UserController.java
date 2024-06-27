@@ -38,6 +38,7 @@ public class UserController {
     public JSONUtil regis(@RequestParam("name")String name, @RequestParam("password")String password) {
         return loginService.regis(name,password);
     }
+    //实现了图片展示
     @PostMapping("/showinfo")
     public List<Picture> showInfo(@RequestParam("name")String name){
         return showPicService.showInfo(name);
