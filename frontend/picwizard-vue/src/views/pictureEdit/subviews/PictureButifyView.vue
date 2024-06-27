@@ -1,5 +1,5 @@
 <template>
-  <BackHeader title="人脸动漫化"></BackHeader>
+  <BackHeader title="AI美颜"></BackHeader>
   <div class="fix-container">
     <!-- 文字说明 -->
     <div class="text1">
@@ -7,7 +7,7 @@
     </div>
     <!-- 文件上传框 -->
     <div class="uploader">
-      <FileUploader type="img" :after-read-func="afterReadFunc"></FileUploader>
+      <FileUploader type="img" :after-read-func="afterReadFunc" ></FileUploader>
       <div class="img-demo">
         <div class="over-text">
           示&nbsp;例&nbsp;图&nbsp;片
@@ -17,31 +17,38 @@
 
     <!-- 文字说明2 -->
     <div class="text2">
-      <van-icon name="circle" color="rgba(84, 115, 232, 0.3)" />&nbsp;动漫化图片
+      <van-icon name="circle" color="rgba(84, 115, 232, 0.3)" />&nbsp;美颜结果
     </div>
     <!-- 展示框 -->
     <div class="show">
-      <img src="" alt="">
+      <img :src="genPicture" alt="" class="img">
     </div>
 
     <div class="button">
-      <van-button type="primary" plain round icon="arrow-up" block @click="onSend">开始处理</van-button>
+      <van-button type="primary" plain round icon="arrow-up" block @click="onSend">开始修复</van-button>
     </div>
   </div>
+
+  <FloatBubble v-model:genPicture="genPicture"/>
+
+  <NavBar />
+
 </template>
 
 <script setup>
 import BackHeader from '@/components/BackHeader.vue';
 import FileUploader from '@/components/FileUploader.vue';
 import { useNetworkStore } from '@/stores/network';
-import { showToast } from 'vant';
-import { reactive, ref } from 'vue';
+import { ref } from 'vue';
+import NavBar from '@/components/NavBar.vue';
 
-// 用户上传的图片
+// 用户上传的文件
 const userPicture = ref("")
-// 生成的图片
-const genPicture = ref("")
+const afterReadFunc = (file)=>{
+  userPicture.value = file.content.slice('data:image/jpeg;base64,'.length)
+}
 
+const genPicture = ref("")
 const onSend = async () => {
   // 用户必须先上传图片
   if (userPicture.value == "") {
@@ -50,18 +57,13 @@ const onSend = async () => {
   }
 
   const networkStore = useNetworkStore()
-  const res = await networkStore.pfix(userPicture.value)
+  const res = await networkStore.pbutify(userPicture.value)
   if (res.code != -1) {
-    genPicture.value = res.msg
+    genPicture.value = "data:image/jpeg;base64,"+res.msg
   } else {
     // 已做错误处理
   }
 }
-
-const afterReadFunc = (file) => {
-  userPicture.value = file.content
-}
-
 </script>
 
 <style scoped lang="less">
@@ -73,14 +75,20 @@ const afterReadFunc = (file) => {
     padding: 0 9vw;
   }
 
+  .text2 {
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    padding: 0 9vw;
+  }
+
   .uploader {
-    margin-top: 8px;
+    margin-top: 2vh;
     display: flex;
     justify-content: space-around;
     align-items: center;
 
     .img-demo {
-      background-image: url("https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg");
+      background-image: url("../../../assets/images.jpg");
       background-repeat: no-repeat;
       background-size: cover;
       width: 35vw;
@@ -101,14 +109,11 @@ const afterReadFunc = (file) => {
         font-size: 3.7vw;
       }
     }
-
-
   }
 
-  .text2 {
-    margin-top: 2vh;
-    margin-bottom: 2vh;
-    padding: 0 9vw;
+  .button {
+    margin: 2vh auto 0;
+    width: 90vw;
   }
 
   .show {
@@ -116,17 +121,14 @@ const afterReadFunc = (file) => {
     height: 40vh;
     border: 8px solid RGBA(203, 213, 248, 0.5);
     display: flex;
+    justify-content: center;
     margin: 0 auto;
 
     .img {
       width: 100%;
       height: auto;
+      margin: 0 auto;
     }
-  }
-
-  .button {
-    margin: 2vh auto 0;
-    width: 90vw;
   }
 }
 </style>

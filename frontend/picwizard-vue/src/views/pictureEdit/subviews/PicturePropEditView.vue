@@ -15,7 +15,7 @@
         </div>
       </div>
     </div>
-
+    
     <!-- 功能选择 -->
     <div class="text3">
       <van-icon name="circle" color="rgba(84, 115, 232, 0.3)" />&nbsp;功能选择
@@ -26,7 +26,7 @@
         <van-picker :columns="columns" @cancel="showPicker = false" @confirm="onConfirm" />
       </van-popup>
     </div>
-
+    
     <!-- 文字说明2 -->
     <div class="text2">
       <van-icon name="circle" color="rgba(84, 115, 232, 0.3)" />&nbsp;属性编辑结果
@@ -34,7 +34,7 @@
 
     <!-- 展示框 -->
     <div class="show">
-      <img src="" alt="">
+      <img :src="genPicture" alt="" class="img">
     </div>
 
     <!-- 开始按钮 -->
@@ -42,6 +42,8 @@
       <van-button type="primary" plain round icon="arrow-up" block @click="onSend">开始处理</van-button>
     </div>
   </div>
+  <FloatBubble v-model:genPicture="genPicture"/>
+  <NavBar />
 </template>
 
 <script setup>
@@ -50,13 +52,17 @@ import FileUploader from '@/components/FileUploader.vue';
 import { useNetworkStore } from '@/stores/network';
 import { showToast } from 'vant';
 import { ref } from 'vue';
+import NavBar from '@/components/NavBar.vue';
+import FloatBubble from '@/components/FloatBubble.vue';
 
 // 选择框用
 const funcChoose = ref('');
 const showPicker = ref(false);
+let chooseValue = ""
 const onConfirm = ({ selectedOptions }) => {
   showPicker.value = false;
   funcChoose.value = selectedOptions[0].text;
+  chooseValue = selectedOptions[0].value;
 };
 const columns = [
   { text: '变男人', value: 'TO_MALE' },
@@ -68,10 +74,9 @@ const columns = [
 // 用户上传的文件
 const userPicture = ref("")
 const afterReadFunc = (file)=>{
-  userPicture.value = file.content
+  userPicture.value = file.content.slice('data:image/jpeg;base64,'.length)
 }
 
-// TODO 完成发送逻辑
 const genPicture = ref("")
 const onSend = async () => {
   // 用户必须先上传图片
@@ -85,11 +90,11 @@ const onSend = async () => {
     return;
   }
 
-  // TODO 引入并完成网络代码
   const networkStore = useNetworkStore()
-  const res = await networkStore.pedit(userPicture.value, funcChoose.value)
+  console.log(funcChoose.value)
+  const res = await networkStore.pedit(userPicture.value, chooseValue)
   if (res.code != -1) {
-    genPicture.value = res.msg
+    genPicture.value = "data:image/jpeg;base64,"+res.msg
   } else {
     // 已做错误处理
   }
@@ -114,7 +119,7 @@ const onSend = async () => {
     align-items: center;
 
     .img-demo {
-      background-image: url("https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg");
+      background-image: url("../../../assets/images.jpg");
       background-repeat: no-repeat;
       background-size: cover;
       width: 35vw;
@@ -155,11 +160,13 @@ const onSend = async () => {
     height: 40vh;
     border: 8px solid RGBA(203, 213, 248, 0.5);
     display: flex;
+    justify-content: center;
     margin: 0 auto;
 
     .img {
       width: 100%;
       height: auto;
+      margin: 0 auto;
     }
   }
 

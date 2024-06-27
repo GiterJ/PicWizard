@@ -1,16 +1,19 @@
 import { defineStore } from "pinia";
 import axios from "axios";
-import { Form, showToast } from "vant";
+import { showToast } from "vant";
+import { useUserStore } from "./user";
 
 export const useNetworkStore = defineStore("network", () => {
+    const userStore = useUserStore()
     const api = axios.create({
-        baseURL: "http://127.0.0.1:4523/m1/4612346-0-default",
-        timeout: 10000,
+        baseURL: "http://192.168.73.109:8081",
+        // baseURL: "/api",
+        timeout: 40000,
         headers: {
             'Content-Type': 'multipart/form-data'
         }
     });
-
+    
     /**
      * 获取问答结果
      * @param {输入图片} image 
@@ -25,6 +28,7 @@ export const useNetworkStore = defineStore("network", () => {
         // 发送请求
         try {
             const res = await api.post("/picqa", formData)
+            console.log(res)
             // 成功返回
             if (res.status == 200) {
                 return res.data
@@ -34,8 +38,9 @@ export const useNetworkStore = defineStore("network", () => {
             }
         }
         // 失败返回网络错误
-        catch {
-            console.log("error", "网络错误")
+        catch (err) {
+            showToast("error 网络错误" + err)
+            console.log("error", err)
             return {
                 code: -1,
                 msg: "网络错误"
@@ -43,7 +48,6 @@ export const useNetworkStore = defineStore("network", () => {
         }
     };
 
-    // TODO 等待后端改为body传参数
     /**
      * 获取图片生成结果
      * @param {提示词} prompt 
@@ -78,6 +82,7 @@ export const useNetworkStore = defineStore("network", () => {
         const formData = new FormData();
         formData.append("template", template)
         formData.append("target", target)
+        formData.append("name", userStore.userInfo.userName)
         try {
             const res = await api.post("/facemerge", formData)
             if (res.status == 200) {
@@ -102,16 +107,16 @@ export const useNetworkStore = defineStore("network", () => {
     const pfix = async (image) => {
         const formData = new FormData()
         formData.append("image", image)
+        formData.append("name", userStore.userInfo.userName)
         try {
             const res = await api.post("/faceanime", formData)
             if (res.status == 200) {
-                console.log(res.data)
                 return res.data
             } else {
                 showToast("error!", res.data.msg)
                 return res.data
             }
-        }catch {
+        } catch {
             return {
                 code: -1,
                 msg: "网络错误"
@@ -127,6 +132,7 @@ export const useNetworkStore = defineStore("network", () => {
     const pbutify = async (image) => {
         const formData = new FormData()
         formData.append("image", image)
+        formData.append("name", userStore.userInfo.userName)
         try {
             const res = await api.post("/beauty", formData)
             if (res.status == 200) {
@@ -135,7 +141,7 @@ export const useNetworkStore = defineStore("network", () => {
                 showToast("error!", res.data.msg)
                 return res.data
             }
-        }catch {
+        } catch {
             return {
                 code: -1,
                 msg: "网络错误"
@@ -147,16 +153,39 @@ export const useNetworkStore = defineStore("network", () => {
         const formData = new FormData();
         formData.append('image', image);
         formData.append('prompt', prompt);
+        formData.append("name", userStore.userInfo.userName)
         try {
             const res = await api.post("/attributeedit", formData)
-            if(res.status == 200) {
+            if (res.status == 200) {
                 return res.data
             }
             else {
                 showToast("Error", res.data.msg)
                 return res.data
             }
-        }catch {
+        } catch {
+            return {
+                code: -1,
+                msg: "网络错误"
+            }
+        }
+    }
+    
+    const pregister = async (name, password) => {
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('password', password);
+        try {
+            const res = await api.post("/regis", formData)
+            console.log(res)
+            if (res.status == 200) {
+                return res.data
+            }
+            else {
+                showToast("Error", res.data.msg)
+                return res.data
+            }
+        } catch {
             return {
                 code: -1,
                 msg: "网络错误"
@@ -164,5 +193,111 @@ export const useNetworkStore = defineStore("network", () => {
         }
     }
 
-    return { api, pgen, pqa, pmerge, pfix, pbutify, pedit }
+    const plogin = async (name, password) => {
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('password', password);
+        try {
+            const res = await api.post("/login", formData)
+            if (res.status == 200) {
+                return res.data
+            }
+            else {
+                showToast("Error", res.data.msg)
+                return res.data
+            }
+        } catch {
+            return {
+                code: -1,
+                msg: "网络错误"
+            }
+        }
+    }
+
+    const pfog = async (image) => {
+        const formData = new FormData();
+        formData.append('image', image)
+        formData.append("name", userStore.userInfo.userName)
+        try {
+            const res = await api.post("/picdefog", formData)
+            if (res.status == 200) {
+                return res.data
+            }
+            else {
+                showToast("Error", res.data.msg)
+                return res.data
+            }
+        } catch {
+            return {
+                code: -1,
+                msg: "网络错误"
+            }
+        }
+    }
+
+    const pcolor = async (image) => {
+        const formData = new FormData();
+        formData.append('image', image)
+        formData.append("name", userStore.userInfo.userName)
+        try {
+            const res = await api.post("/piccolor", formData)
+            if (res.status == 200) {
+                return res.data
+            }
+            else {
+                showToast("Error", res.data.msg)
+                return res.data
+            }
+        } catch {
+            return {
+                code: -1,
+                msg: "网络错误"
+            }
+        }
+    }
+
+    const pclear = async (image) => {
+        const formData = new FormData();
+        formData.append('image', image)
+        formData.append("name", userStore.userInfo.userName)
+        try {
+            const res = await api.post("/picclear", formData)
+            if (res.status == 200) {
+                return res.data
+            }
+            else {
+                showToast("Error", res.data.msg)
+                return res.data
+            }
+        } catch {
+            return {
+                code: -1,
+                msg: "网络错误"
+            }
+        }
+    }
+
+    const pSavedGet = async () => {
+        const formData = new FormData();
+        formData.append("name", userStore.userInfo.userName)
+        try {
+            const res = await api.post("/showinfo", formData)
+            if (res.status == 200) {
+                console.log(res.data);
+                return res.data
+            }
+            else {
+                showToast("Error", res.data.msg)
+                return res.data
+            }
+        } catch {
+            return {
+                code: -1,
+                msg: "网络错误"
+            }
+        }
+    }
+
+
+    return { api, pgen, pqa, pmerge, pfix, pbutify, pedit, pregister, plogin, pfog, pcolor, pclear, pSavedGet }
 });
