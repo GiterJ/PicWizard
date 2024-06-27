@@ -6,7 +6,7 @@ import { useUserStore } from "./user";
 export const useNetworkStore = defineStore("network", () => {
     const userStore = useUserStore()
     const api = axios.create({
-        baseURL: "http://192.168.73.109:8081",
+        baseURL: "http://192.168.108.109:8081",
         // baseURL: "/api",
         timeout: 40000,
         headers: {

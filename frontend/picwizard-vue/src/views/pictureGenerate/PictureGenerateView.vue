@@ -7,7 +7,7 @@
       &nbsp;生成图片：
     </div>
     <div class="uploader">
-      <van-image width="100" height="100" :class="picture" round @click="showPreview">
+      <van-image width="100" height="100" :src="picture" :class="picture" round @click="showPreview" :show-loading="showLoading">
         <template v-slot:loading>
           <van-loading type="spinner" size="20" color="rgba(84, 115, 232, 0.5)" />
         </template>
@@ -55,7 +55,7 @@
 <script setup>
 import Header from '@/components/Header.vue';
 import ChatBox from '@/components/ChatBox.vue';
-import { reactive, ref } from 'vue';
+import { computed, reactive, ref } from 'vue';
 import { useNetworkStore } from '@/stores/network';
 import NavBar from '@/components/NavBar.vue';
 import { showToast } from 'vant';
@@ -64,6 +64,10 @@ import { showToast } from 'vant';
 const chatHistory = reactive([])
 
 const picture = ref("")
+
+const showLoading = computed(() => {
+  return picture.value == ""
+})
 
 // 聊天输入消息
 const sms = ref("")
@@ -98,35 +102,6 @@ const showPreview = () => {
   show.value = true
 }
 
-// 根据URL下载图片
-// const downloadImage = () => {
-//   if (picture.value != "") {
-//     let image = new Image();
-//     image.setAttribute("crossOrigin", "anonymous");
-//     image.src = picture.value;
-//     image.onload = () => {
-//       let canvas = document.createElement("canvas");
-//       canvas.width = image.width;
-//       canvas.height = image.height;
-//       let ctx = canvas.getContext("2d");
-//       ctx.drawImage(image, 0, 0, image.width, image.height);
-//       canvas.toBlob(blob => {
-//         let url = URL.createObjectURL(blob);
-//         let a = document.createElement("a");
-//         a.download = "name.jpg";
-//         a.href = url;
-//         a.click();
-//         a.remove();
-//         // 用完释放URL对象
-//         URL.revokeObjectURL(url);
-//       });
-//     };
-//   }
-//   else {
-//     showToast("生成图片后才能下载！")
-//   }
-// }
-
 const downloadImage = () => {
   if (picture.value != "") {
     var a = document.createElement("a");
@@ -139,9 +114,6 @@ const downloadImage = () => {
     showToast("生成图片后才能下载！")
   }
 }
-
-
-
 </script>
 
 <style scoped lang="less">
