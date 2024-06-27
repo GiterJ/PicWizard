@@ -28,28 +28,31 @@
     </div>
   </div>
 
+  <NavBar />
+
 </template>
 
 <script setup>
 import Header from '@/components/Header.vue';
 import { useRouter } from 'vue-router';
+import NavBar from '@/components/NavBar.vue';
 
 const router = useRouter()
 
 const enterMerge = () => {
-  router.replace('/pm')
+  router.push('/pm')
 }
 
 const enterButify = () => {
-  router.replace('/pb')
+  router.push('/pb')
 }
 
 const enterEdit = () => {
-  router.replace('/ppe')
+  router.push('/ppe')
 }
 
 const enterFix = () => {
-  router.replace('/pf')
+  router.push('/pf')
 }
 
 

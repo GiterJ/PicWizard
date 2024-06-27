@@ -1,12 +1,18 @@
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
-import PictureQAView from '@/views/PictureQAView.vue'
-import PictureGenerateView from '@/views/PictureGenerateView.vue'
-import VideoGenerateView from '@/views/VideoGenerateView.vue'
-import PictureEditView from '@/views/PictureEditView.vue'
-import PictureButifyView from '@/views/subviews/PictureButifyView.vue'
-import PictureFixView from '@/views/subviews/PictureFixView.vue'
-import PictureMergeView from '@/views/subviews/PictureMergeView.vue'
-import PicturePropEditView from '@/views/subviews/PicturePropEditView.vue'
+import PictureQAView from '@/views/pictureQA/PictureQAView.vue'
+import PictureGenerateView from '@/views/pictureGenerate/PictureGenerateView.vue'
+import PictureEnhanceView from '@/views/pictureEnhance/PictureEnhanceView.vue'
+import PictureEditView from '@/views/pictureEdit/PictureEditView.vue'
+import PictureButifyView from '@/views/pictureEdit/subviews/PictureButifyView.vue'
+import PictureAnimateView from '@/views/pictureEdit/subviews/PictureAnimateView.vue'
+import PictureMergeView from '@/views/pictureEdit/subviews/PictureMergeView.vue'
+import PicturePropEditView from '@/views/pictureEdit/subviews/PicturePropEditView.vue'
+import LoginView from '@/views/login/LoginView.vue'
+import RegisterView from '@/views/login/RegisterView.vue'
+import PictureBlack2Color from '@/views/pictureEnhance/subviews/PictureBlack2Color.vue'
+import PictureClearer from '@/views/pictureEnhance/subviews/PictureClearer.vue'
+import PictureRemoveFog from '@/views/pictureEnhance/subviews/PictureRemoveFog.vue'
+import PictureSavedView from '@/views/pictureSaved/PictureSavedView.vue'
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -14,12 +20,12 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      redirect: 'pqa'
+      redirect: 'login'
     },
     {
-      path:'/pqa',
+      path: '/pqa',
       name: 'pqa',
-      component:PictureQAView
+      component: PictureQAView
     },
     {
       path: '/pgen',
@@ -34,7 +40,25 @@ const router = createRouter({
     {
       path: '/vgen',
       name: 'vgen',
-      component: VideoGenerateView
+      component: PictureEnhanceView,
+      redirect: 'vgen/color',
+      children: [
+        {
+          path: 'color',
+          name: 'color',
+          component: PictureBlack2Color
+        },
+        {
+          path: 'clear',
+          name: 'clear',
+          component: PictureClearer
+        },
+        {
+          path: 'remove',
+          name: 'remove',
+          component: PictureRemoveFog
+        }
+      ]
     },
     {
       path: '/pb',
@@ -44,7 +68,7 @@ const router = createRouter({
     {
       path: '/pf',
       name: 'pf',
-      component: PictureFixView
+      component: PictureAnimateView
     },
     {
       path: '/pm',
@@ -55,6 +79,21 @@ const router = createRouter({
       path: '/ppe',
       name: 'ppe',
       component: PicturePropEditView
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: LoginView
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: RegisterView
+    },
+    {
+      path: '/psaved',
+      name: 'psaved',
+      component: PictureSavedView
     }
   ]
 })

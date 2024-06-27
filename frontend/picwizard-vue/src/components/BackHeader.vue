@@ -10,7 +10,7 @@ const router = useRouter()
 const props = defineProps(['title'])
 
 const onClickLeft = () => {
-    router.replace('/pedit')
+    router.back()
 }
 </script>
 

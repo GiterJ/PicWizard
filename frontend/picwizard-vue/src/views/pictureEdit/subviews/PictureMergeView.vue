@@ -15,16 +15,14 @@
         <van-uploader :after-read="afterReadTarget" preview-size="30vw" :max-count="1" v-model="vmodelPicture2" />
       </div>
     </div>
-
+    
     <!-- 文字提示框2 -->
     <div class="text2">
       <van-icon name="circle" color="rgba(84, 115, 232, 0.3)" />&nbsp;图片输出
     </div>
 
-
     <div class="result">
-      <!-- TODO 补全照片展示框 -->
-      <img :src="genPictureUrl" class="img">
+      <img :src="genPicture" alt="" class="img">
     </div>
 
     <div class="button">
@@ -32,6 +30,11 @@
     </div>
 
   </div>
+
+  <FloatBubble v-model:genPicture="genPicture"/>
+
+  <NavBar />
+
 </template>
 
 <script setup>
@@ -39,9 +42,10 @@ import BackHeader from '@/components/BackHeader.vue';
 import { useNetworkStore } from '@/stores/network';
 import { showToast } from 'vant';
 import { ref, reactive } from 'vue';
+import NavBar from '@/components/NavBar.vue';
 
 // 图片位置
-const genPictureUrl = ref("https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg")
+const genPicture = ref("")
 
 // 用于展示图片
 const vmodelPicture1 = ref([])
@@ -60,10 +64,9 @@ const onSend = async () => {
   }
 
   const networkStore = useNetworkStore()
-  const res = await networkStore.pmerge()
+  const res = await networkStore.pmerge(userPicture.target, userPicture.template)
   if (res.code != -1) {
-    // TODO 待验证能否直接用base64放到src中展示图片
-    genPictureUrl.value = res.msg
+    genPicture.value = "data:image/jpeg;base64,"+res.msg
   } else {
     // 已做错误处理
   }
@@ -71,12 +74,12 @@ const onSend = async () => {
 
 // 模板图片存储
 const afterReadTemplate = (file) => {
-  userPicture.template = file.content
+  userPicture.template = file.content.slice('data:image/jpeg;base64,'.length);
 }
 
 // 目标图片存储
 const afterReadTarget = (file) => {
-  userPicture.target = file.content
+  userPicture.target = file.content.slice('data:image/jpeg;base64,'.length);
 }
 
 </script>
@@ -115,10 +118,12 @@ const afterReadTarget = (file) => {
     height: 40vh;
     border: 8px solid RGBA(203, 213, 248, 0.5);
     display: flex;
+    justify-content: center;
 
     .img {
       width: 100%;
       height: auto;
+      margin: 0 auto;
     }
   }
 

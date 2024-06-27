@@ -1,7 +1,6 @@
-<!-- FIXME 修复聊天框无限扩大的问题 -->
-
 <template>
     <Header title="图片问答"></Header>
+    <!-- <div class="testbutton" @click="test"></div> -->
     <div class="qa-container">
         <!-- 文件上传框 -->
         <div class="uploader-box">
@@ -37,6 +36,7 @@
         </div>
     </div>
 
+    <NavBar />
 
 </template>
 
@@ -46,25 +46,13 @@ import ChatBox from '@/components/ChatBox.vue';
 import { useNetworkStore } from '@/stores/network';
 import { reactive, ref } from 'vue';
 import { showToast } from 'vant';
+import NavBar from '@/components/NavBar.vue';
 
 // 聊天记录
 const chatHistory = reactive([
-    {
-        name: 'user',
-        text: '这张图片里有什么',
-        type: 'right'
-    },
-    {
-        name: 'PicWizard',
-        text: '这里面是一条狗',
-        type: 'left'
-    },
 ])
 
-// TODO 补充上传处理函数 base64编码
 const afterRead = () => {
-    // TODO 可以添加一个指示逻辑，表示上传成功
-
 }
 
 // 输入框消息文字
@@ -92,7 +80,7 @@ const sendMessage = async () => {
     // 发送图片和文本
     const netWorkStore = useNetworkStore()
     const res = await netWorkStore.pqa(picture.value[0].content, input)
-    if (code != -1) {
+    if (res.code != -1) {
         chatHistory.push({
             name: 'PicWizard',
             text: res.msg,
@@ -102,7 +90,6 @@ const sendMessage = async () => {
     else {
         // 失败处理已做
     }
-
 }
 
 // 接受到的图片
@@ -111,6 +98,12 @@ const picture = ref([])
 </script>
 
 <style scoped lang="less">
+.testbutton {
+    width: 100px;
+    height: 100px;
+    background-color: #a82121;
+}
+
 .qa-container {
     .uploader-box {
         margin: 2.5vh auto;
@@ -127,7 +120,9 @@ const picture = ref([])
             font-weight: bold;
         }
 
-        .uploader {}
+        // .uploader {
+            
+        // }
     }
 
     .chat {
@@ -138,17 +133,15 @@ const picture = ref([])
         // background-color: #F3F3F4;
         padding: 2vw 2px;
 
-        .chatboxs {
-            overflow-y: hidden;
+        .chatboxes {
+            overflow-y: auto;
             width: 93vw;
-            height: 40vh;
-            max-height: 40vh;
+            height: 55vh;
         }
 
-        .chatboxs::-webkit-scrollbar {
+        .chatboxes::-webkit-scrollbar {
             display: none;
         }
-
 
         .typein {
             position: absolute;

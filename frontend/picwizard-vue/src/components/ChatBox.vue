@@ -65,7 +65,7 @@ const props = defineProps(['type', 'avatar', 'text', 'name'])
     .chatbox {
         margin: 3vw 2vw;
         height: 12vw;
-        width: 96vw;
+        width: 92vw;
         position: relative;
 
         .box {
