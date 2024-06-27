@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hit.project.mapper.PictureDao">
+  <resultMap id="BaseResultMap" type="com.hit.project.entity.Picture">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="func" jdbcType="VARCHAR" property="func" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.hit.project.entity.Picture">
+    <result column="base64" jdbcType="LONGVARCHAR" property="base64" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `name`, `time`, func
+  </sql>
+  <sql id="Blob_Column_List">
+    base64
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from picture
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultType="com.hit.project.entity.Picture">
+    select * from picture
+    where name = #{name,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from picture
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.hit.project.entity.Picture" useGeneratedKeys="true">
+    insert into picture (`name`, `time`, func, 
+      base64)
+    values (#{name,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, #{func,jdbcType=VARCHAR}, 
+      #{base64,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.hit.project.entity.Picture" useGeneratedKeys="true">
+    insert into picture
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="time != null">
+        `time`,
+      </if>
+      <if test="func != null">
+        func,
+      </if>
+      <if test="base64 != null">
+        base64,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="func != null">
+        #{func,jdbcType=VARCHAR},
+      </if>
+      <if test="base64 != null">
+        #{base64,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hit.project.entity.Picture">
+    update picture
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        `time` = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="func != null">
+        func = #{func,jdbcType=VARCHAR},
+      </if>
+      <if test="base64 != null">
+        base64 = #{base64,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hit.project.entity.Picture">
+    update picture
+    set `name` = #{name,jdbcType=VARCHAR},
+      `time` = #{time,jdbcType=TIMESTAMP},
+      func = #{func,jdbcType=VARCHAR},
+      base64 = #{base64,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hit.project.entity.Picture">
+    update picture
+    set `name` = #{name,jdbcType=VARCHAR},
+      `time` = #{time,jdbcType=TIMESTAMP},
+      func = #{func,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

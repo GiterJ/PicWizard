@@ -38,7 +38,6 @@ public class UserController {
     public JSONUtil regis(@RequestParam("name")String name, @RequestParam("password")String password) {
         return loginService.regis(name,password);
     }
-
     @PostMapping("/showinfo")
     public List<Picture> showInfo(@RequestParam("name")String name){
         return showPicService.showInfo(name);
