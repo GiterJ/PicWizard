@@ -13,6 +13,8 @@ public class ShowPicServiceImpl implements ShowPicService {
     private PictureDao pictureDao;
     @Override
     public List<Picture> showInfo(String name) {
+        System.out.println("[INFO]:用户名为 " + name);
+        System.out.println("[INFO]:展示页面");
         return pictureDao.selectAll(name);
     }
 }

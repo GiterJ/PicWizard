@@ -29,7 +29,7 @@ public class BeautyServiceImpl implements BeautyService {
         HttpURLConnection conn = null;
         try{
             System.out.println("[INFO]:美颜开始");
-            URL url = new URL("https://openapi.mtlab.meitu.com/v1/beauty?api_key=2024fecb3adc42c68b24cbf42565bc81&api_secret=787adcb84fd545188a5c528ed19da9d8");
+            URL url = new URL("https://openapi.mtlab.meitu.com/v1/beauty?api_key=775e66c29a3d456e8c3b9e2314d6ea6a&api_secret=55e55e7fda4246d0b682b35528869b8c");
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
 
